@@ -6,6 +6,7 @@ M.config = function ()
 
   -- Additional Leader bindings for WhichKey
   lvim.builtin.which_key.mappings.s = { ":update<cr>", "QuickSave" }
+  lvim.builtin.which_key.mappings.e = nil
   lvim.builtin.which_key.mappings.n = { ":NvimTreeToggle<CR>", "Toggle NvimTree" }
 
   -- WhichKey Telescope

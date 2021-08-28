@@ -12,7 +12,7 @@ vim.opt.timeoutlen = 200 -- increase this to your liking
 -- Lvim config options
 lvim.lint_on_save = true
 lvim.format_on_save = true
-lvim.colorscheme = "nord"
+-- lvim.colorscheme = "nord"
 lvim.transparent_window = false
 lvim.debug = false
 

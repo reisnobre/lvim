@@ -2,7 +2,7 @@ local M = {}
 
 M.config = function ()
   lvim.plugins = {
-    { "arcticicestudio/nord-vim" },
+    -- { "arcticicestudio/nord-vim" },
     { "christoomey/vim-tmux-navigator" },
     { "tpope/vim-repeat" },
     { "mattn/emmet-vim", ft = {
