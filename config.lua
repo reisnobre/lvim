@@ -8,6 +8,7 @@ vim.opt.clipboard = "unnamedplus" -- allows neovim to access the system clipboar
 vim.opt.cmdheight = 2
 vim.opt.relativenumber = true
 vim.opt.timeoutlen = 200 -- increase this to your liking
+vim.opt.mouse=""
 
 -- Lvim config options
 lvim.lint_on_save = true
