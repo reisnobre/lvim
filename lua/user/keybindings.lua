@@ -26,7 +26,8 @@ M.config = function ()
 
   lvim.builtin.which_key.mappings["G"] = {
     name = "+Fugitive",
-    s = { "<cmd>G<cr>", "Git" }
+    s = { "<cmd>G<cr>", "Git" },
+    c = { "<cmd>G<cr>", "Git commit" }
   }
 end
 
