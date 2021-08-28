@@ -1,3 +1,6 @@
+-- Leader
+lvim.leader = "space"
+
 -- Vim config options
 vim.opt.wrap = false
 vim.opt.backup = false -- creates a backup file
@@ -13,26 +16,11 @@ lvim.colorscheme = "nord"
 lvim.transparent_window = false
 lvim.debug = false
 
-lvim.builtin.terminal.active = false
-
--- Leader
-lvim.leader = "space"
-
--- Nvimtree
-lvim.builtin.nvimtree.side = "left"
-lvim.builtin.nvimtree.show_icons.git = 1
-
--- if you don't want all the parsers change this to a table of the ones you want
-lvim.builtin.treesitter.ensure_installed = "maintained"
-lvim.builtin.treesitter.ignore_install = { "haskell" }
-lvim.builtin.treesitter.highlight.enabled = true
-
--- Barbar
-
-lvim.builtin.bufferline.left_mouse_command = nil
-
--- LSP
+-- LSP customization
 lvim.lsp.diagnostics.virtual_text = false
+
+-- Builtin customization
+require("user.builtin").config()
 
 --- Additional Plugins
 require("user.plugins").config()

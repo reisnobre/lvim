@@ -18,7 +18,8 @@ M.config = function ()
       name = "+Git",
       c = { "<cmd>Telescope git_commits<cr>", "Git commits" },
       b = { "<cmd>Telescope git_branches<cr>", "Git branches" },
-      s = { "<cmd>Telescope git_status<cr>", "Git status" }
+      s = { "<cmd>Telescope git_status<cr>", "Git status" },
+      S = { "<cmd>G<cr>", "Git" }
     }
   }
 end
