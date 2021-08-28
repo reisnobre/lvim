@@ -1,6 +1,7 @@
 local M = {}
 
 M.config = function()
+  -- Base builitns
   lvim.builtin.dashboard.active = true
   lvim.builtin.terminal.active = false
 
@@ -21,6 +22,10 @@ M.config = function()
   lvim.builtin.lualine.options.icons_enabled = true
   lvim.builtin.lualine.options.section_separators = {"", ""}
   lvim.builtin.lualine.options.component_separators = {"", ""}
+
+  -- Compe
+  lvim.builtin.compe.documentation.border = { "╭", "─", "╮", "│", "╯", "─", "╰", "│" }
+
 end
 
 return M

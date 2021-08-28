@@ -9,6 +9,12 @@ M.config = function ()
   lvim.builtin.which_key.mappings.n = { ":NvimTreeToggle<CR>", "Toggle NvimTree" }
 
   -- WhichKey Telescope
+  lvim.builtin.which_key.mappings["r"] = {
+    name = "+Refactor",
+    f = { "ye:s%,',", "Whole file" },
+    l = { "", "This line" }
+  }
+
   lvim.builtin.which_key.mappings["f"] = {
     name = "+Telescope",
     p = { "<cmd>Telescope find_files<cr>", "Find files" },
@@ -18,9 +24,13 @@ M.config = function ()
       name = "+Git",
       c = { "<cmd>Telescope git_commits<cr>", "Git commits" },
       b = { "<cmd>Telescope git_branches<cr>", "Git branches" },
-      s = { "<cmd>Telescope git_status<cr>", "Git status" },
-      S = { "<cmd>G<cr>", "Git" }
+      s = { "<cmd>Telescope git_status<cr>", "Git status" }
     }
+  }
+
+  lvim.builtin.which_key.mappings["G"] = {
+    name = "+Fugitive",
+    s = { "<cmd>G<cr>", "Git" }
   }
 end
 

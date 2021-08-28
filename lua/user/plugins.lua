@@ -5,6 +5,14 @@ M.config = function ()
     { "arcticicestudio/nord-vim" },
     { "christoomey/vim-tmux-navigator" },
     { "tpope/vim-repeat" },
+    { "mattn/emmet-vim", ft = {
+        "html",
+        "css",
+        "scss",
+        "vue",
+        "javascript"
+      }
+    },
     { "aca/emmet-ls", ft = {
         "html",
         "css",
