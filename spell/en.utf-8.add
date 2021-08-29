@@ -7,3 +7,5 @@ NP-hard
 filterByInterval
 autocommands
 nord
+which_key
+lualine
