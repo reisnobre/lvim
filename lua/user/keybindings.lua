@@ -3,12 +3,10 @@ local M = {}
 M.config = function ()
 
   lvim.keys.normal_mode["<C-s>"] = ":w<cr>"
-  lvim.keys.normal_mode["<leader>rf"] = "ye:%s, "
 
   -- Additional Leader bindings for WhichKey
   lvim.builtin.which_key.mappings.s = { ":update<cr>", "QuickSave" }
-  lvim.builtin.which_key.mappings.e = nil
-  lvim.builtin.which_key.mappings.r = nil
+  lvim.builtin.which_key.mappings.e = nil -- Removed old NvimTreeToggle
   lvim.builtin.which_key.mappings.n = { ":NvimTreeToggle<CR>", "Toggle NvimTree" }
 
   lvim.builtin.which_key.mappings["f"] = {
