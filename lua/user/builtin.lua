@@ -18,11 +18,6 @@ M.config = function()
   -- Bufferline
   lvim.builtin.bufferline.left_mouse_command = nil
 
-  -- Lualine
-  lvim.builtin.lualine.options.icons_enabled = true
-  lvim.builtin.lualine.options.section_separators = {"", ""}
-  lvim.builtin.lualine.options.component_separators = {"", ""}
-
   -- Compe
   lvim.builtin.compe.documentation.border = { "╭", "─", "╮", "│", "╯", "─", "╰", "│" }
 
