@@ -12,8 +12,8 @@ vim.opt.mouse=""
 
 -- Lvim config options
 lvim.lint_on_save = true
-lvim.format_on_save = true
-lvim.colorscheme = "nord"
+lvim.format_on_save = false
+lvim.colorscheme = "norddark"
 lvim.transparent_window = false
 lvim.debug = false
 
