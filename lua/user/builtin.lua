@@ -4,6 +4,7 @@ M.config = function()
   -- Base builitns
   lvim.builtin.dashboard.active = true
   lvim.builtin.terminal.active = false
+  lvim.builtin.treesitter.playground.enable = true
 
   -- Nvimtree
   lvim.builtin.nvimtree.side = "left"
@@ -21,6 +22,9 @@ M.config = function()
   -- Compe
   lvim.builtin.compe.documentation.border = { "╭", "─", "╮", "│", "╯", "─", "╰", "│" }
 
+  -- LSP customization
+  lvim.lsp.diagnostics.virtual_text = false
+  lvim.lang.tailwindcss.lsp.active = true
 end
 
 return M
