@@ -1,0 +1,14 @@
+  Keybindings to learn and implement in the future
+  source: abzcoding
+
+  -- Move current line / block with Alt-j/k a la vscode.
+  -- ["<A-j>"] = ":m .+1<CR>==",
+  --   visual_block_mode = {
+  --     -- Move selected line / block of text in visual mode
+  --     ["K"] = ":move '<-2<CR>gv-gv",
+  --     ["J"] = ":move '>+1<CR>gv-gv",
+  -- 
+  --     -- Move current line / block with Alt-j/k ala vscode.
+  --     ["<A-j>"] = ":m '>+1<CR>gv-gv",
+  --     ["<A-k>"] = ":m '<-2<CR>gv-gv",
+  --   },     -- ["<A-k>"] = ":m .-2<CR>==",

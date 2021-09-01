@@ -17,9 +17,6 @@ lvim.colorscheme = "norddark"
 lvim.transparent_window = false
 lvim.debug = false
 
--- LSP customization
-lvim.lsp.diagnostics.virtual_text = false
-
 -- Builtin customization
 require("user.builtin").config()
 
