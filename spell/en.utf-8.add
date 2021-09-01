@@ -28,3 +28,5 @@ scss
 mixins
 AllScheduledJob
 config
+auth
+getUser
