@@ -3,10 +3,11 @@ local M = {}
 M.config = function ()
 
   lvim.keys.normal_mode["<C-s>"] = ":w<cr>"
+  lvim.keys.normal_mode["<leader>rf"] = ":%s,<C-r><C-w>,"
+  lvim.keys.normal_mode["<leader>rl"] = ":s,<C-r><C-w>,"
 
   -- Additional Leader bindings for WhichKey
   lvim.builtin.which_key.mappings.s = { ":update<cr>", "QuickSave" }
-  lvim.builtin.which_key.mappings.e = nil -- Removed old NvimTreeToggle
   lvim.builtin.which_key.mappings.n = { ":NvimTreeToggle<CR>", "Toggle NvimTree" }
   lvim.builtin.which_key.mappings.T.p = { "<cmd>TSPlaygroundToggle<cr>", "Playground" }
 
@@ -36,6 +37,13 @@ M.config = function ()
     q = { "<cmd>Trouble quickfix<cr>", "QuickFix" },
     l = { "<cmd>Trouble loclist<cr>", "LocationList" },
     w = { "<cmd>Trouble lsp_workspace_diagnostics<cr>", "Diagnosticss" },
+  }
+
+  lvim.builtin.which_key.mappings["T"] = {
+    name = "Test",
+    f = { "<cmd>TestFile<cr>", "File" },
+    n = { "<cmd>TestNearest<cr>", "Nearest" },
+    s = { "<cmd>TestSuite<cr>", "Suite" },
   }
 end
 

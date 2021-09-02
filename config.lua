@@ -18,7 +18,10 @@ lvim.transparent_window = false
 lvim.debug = false
 
 -- Builtin customization
-require("user.builtin").config()
+require("user.builtins").config()
+
+-- LSP customization
+require("user.lsp").config()
 
 --- Additional Plugins
 require("user.plugins").config()

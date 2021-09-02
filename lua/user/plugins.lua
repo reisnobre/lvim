@@ -8,9 +8,6 @@ M.config = function ()
     { "tpope/vim-surround", keys = { "c","d","y" } },
     { "norcalli/nvim-colorizer.lua" },
     { "shaunsingh/nord.nvim" },
-    { "nvim-treesitter/playground",
-      event = "BufRead",
-    },
     { "tpope/vim-fugitive", cmd = {
 				"G",
 				"Git",
@@ -45,6 +42,22 @@ M.config = function ()
         require("trouble").setup()
       end,
       cmd = "Trouble",
+    },
+    { "vim-test/vim-test",
+      cmd = { "Test*" },
+      keys = { "<localleader>tf", "<localleader>tn", "<localleader>ts" },
+      config = function()
+        vim.cmd [[
+        function! ToggleTermStrategy(cmd) abort
+        call luaeval("require('toggleterm').exec(_A[1])", [a:cmd])
+        endfunction
+        let g:test#custom_strategies = {'toggleterm': function('ToggleTermStrategy')}
+        ]]
+        vim.g["test#strategy"] = "toggleterm"
+      end,
+    },
+    { "nvim-treesitter/playground",
+      event = "BufRead",
     }
   }
 end

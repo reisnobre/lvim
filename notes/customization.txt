@@ -1,0 +1,6 @@
+  --  lualine
+  lvim.builtin.lualine.sections.lualine_c = {
+    function ()
+      return ""
+    end
+  }
