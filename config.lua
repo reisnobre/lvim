@@ -20,9 +20,6 @@ lvim.debug = false
 -- Builtin customization
 require("user.builtins").config()
 
--- LSP customization
-require("user.lsp").config()
-
 --- Additional Plugins
 require("user.plugins").config()
 

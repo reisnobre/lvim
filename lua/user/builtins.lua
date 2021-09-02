@@ -24,6 +24,10 @@ M.config = function()
 
   -- Compe
   lvim.builtin.compe.documentation.border = { "╭", "─", "╮", "│", "╯", "─", "╰", "│" }
+
+  -- LSP
+  lvim.lsp.diagnostics.virtual_text = false
+  lvim.lang.tailwindcss.lsp.active = true
 end
 
 return M
