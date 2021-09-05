@@ -9,6 +9,9 @@ M.config = function()
     -- This setting only take effect in insert mode, it does not affect signature help in normal
     -- mode, 10 by default
 
+    floating_window_above_first = true, -- try to place the floating above the current line when possible Note:
+  -- will set to true when fully tested
+    focusable = false, -- make lsp_signature not focusable so the title of the window won't flicker while I type
     floating_window = true, -- show hint in a floating window, set to false for virtual text only mode
     fix_pos = false, -- set to true, the floating window will not auto-close until finish all parameters
     hint_enable = true, -- virtual hint enable

@@ -2,7 +2,6 @@ local M = {}
 
 M.config = function ()
   lvim.plugins = {
-    { "christoomey/vim-tmux-navigator" },
     { "reisnobre/Colorschemes" },
     { "tpope/vim-repeat" },
     { "tpope/vim-surround", keys = { "c","d","y" } },
