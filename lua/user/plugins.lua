@@ -3,26 +3,25 @@ local M = {}
 M.config = function ()
   lvim.plugins = {
     { "reisnobre/Colorschemes" },
-    { "tpope/vim-repeat" },
-    { "tpope/vim-surround", keys = { "c","d","y" } },
-    { "norcalli/nvim-colorizer.lua" },
-    { "shaunsingh/nord.nvim" },
     { "tpope/vim-fugitive", cmd = {
-				"G",
-				"Git",
-				"Gdiffsplit",
-				"Gread",
-				"Gwrite",
-				"Ggrep",
-				"GMove",
-				"GDelete",
-				"GBrowse",
-				"GRemove",
-				"GRename",
-				"Glgrep",
-				"Gedit",
-			}
-		},
+      				"G",
+      				"Git",
+      				"Gdiffsplit",
+      				"Gread",
+      				"Gwrite",
+      				"Ggrep",
+      				"GMove",
+      				"GDelete",
+      				"GBrowse",
+      				"GRemove",
+      				"GRename",
+      				"Glgrep",
+      				"Gedit",
+      			}
+      		},
+    { "norcalli/nvim-colorizer.lua",
+      event = "BufRead",
+    },
     { "ray-x/lsp_signature.nvim",
       config = function()
         require("user/lsp_signature").config()
@@ -33,6 +32,7 @@ M.config = function ()
       config = function()
         require "user.blankline"
       end,
+      event = "BufRead",
     },
     {
       "folke/trouble.nvim",
@@ -41,6 +41,14 @@ M.config = function ()
         require("trouble").setup()
       end,
       cmd = "Trouble",
+      event = "BufRead",
+    },
+    { "tpope/vim-repeat",
+      event = "BufRead",
+    },
+    { "tpope/vim-surround",
+      keys = { "c","d","y" },
+      event = "BufRead",
     },
     { "vim-test/vim-test",
       cmd = { "Test*" },
@@ -54,8 +62,13 @@ M.config = function ()
         ]]
         vim.g["test#strategy"] = "toggleterm"
       end,
+      event = "BufRead",
     },
     { "nvim-treesitter/playground",
+      event = "BufRead",
+    },
+    {
+      "kchmck/vim-coffee-script",
       event = "BufRead",
     }
   }

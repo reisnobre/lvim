@@ -18,8 +18,9 @@ M.config = function ()
 
   -- Additional git command
   lvim.builtin.which_key.mappings.g.s = { "<cmd>G<cr>", "Fugitive Git" }
+  lvim.builtin.which_key.mappings.g.a = { "<cmd>lua require 'gitsigns'.stage_hunk()<cr>", "State hunk" }
 
-  -- 
+  --
   lvim.builtin.which_key.mappings["f"] = {
     name = "+Telescope",
     p = { "<cmd>Telescope find_files<cr>", "Find files" },
@@ -55,6 +56,12 @@ M.config = function ()
     f = { "<cmd>TestFile<cr>", "File" },
     n = { "<cmd>TestNearest<cr>", "Nearest" },
     s = { "<cmd>TestSuite<cr>", "Suite" },
+  }
+
+  lvim.builtin.which_key.mappings["E"] = {
+    name = "Exec",
+    j = { "<cmd>TermExec cmd='echo y | rm public/js/dependencies.js; gulp compile-js'<CR>", "Compile-js" }
+
   }
 end
 

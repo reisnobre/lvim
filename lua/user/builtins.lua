@@ -20,6 +20,7 @@ M.config = function()
   -- Nvimtree
   lvim.builtin.nvimtree.side = "left"
   lvim.builtin.nvimtree.show_icons.git = 1
+  lvim.builtin.nvimtree.hide_dotfiles = 0
 
   -- Treesitter
   lvim.builtin.treesitter.ensure_installed = "maintained"
@@ -30,22 +31,13 @@ M.config = function()
   -- Bufferline
   lvim.builtin.bufferline.left_mouse_command = nil
 
-  -- Compe
-  lvim.builtin.compe.documentation.border = { "╭", "─", "╮", "│", "╯", "─", "╰", "│" }
-
   -- LSP
+  lvim.lsp.document_highlight = false
   lvim.lsp.diagnostics.virtual_text = false
   lvim.lang.tailwindcss.lsp.active = true
   lvim.lang.javascript.lsp.setup.flags = { debounce_text_changes = 150 }
   lvim.lang.php.lsp.setup.flags = { debounce_text_changes = 150 }
   lvim.lang.vue.lsp.setup.flags = { debounce_text_changes = 150 }
-  -- Compe 
-  lvim.builtin.compe.documentation.border = { "╭", "─", "╮", "│", "╯", "─", "╰", "│" }
-  -- lvim.builtin.compe.max_abbr_width = 200
-  -- lvim.builtin.compe.max_kind_width = 200
-  -- lvim.builtin.compe.max_menu_width = 200
-  -- lvim.builtin.compe.documentation.max_width = 400
-  -- lvim.builtin.compe.documentation.min_width= 300
 end
 
 return M

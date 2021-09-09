@@ -1,4 +1,4 @@
-vim.g.indent_blankline_buftype_exclude = { "terminal", "nofile" }
+vim.g.indent_blankline_buftype_exclude = { "terminal", "nofile", "dashboard", "fugitive" }
 vim.g.indent_blankline_filetype_exclude = {
   "help",
   "startify",
@@ -7,6 +7,7 @@ vim.g.indent_blankline_filetype_exclude = {
   "neogitstatus",
   "NvimTree",
   "Trouble",
+  "fugitive"
 }
 vim.g.indentLine_enabled = 1
 -- vim.g.indent_blankline_char = "│"
