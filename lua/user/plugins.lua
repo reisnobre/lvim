@@ -71,6 +71,20 @@ M.config = function ()
       "kchmck/vim-coffee-script",
       event = "BufRead",
     },
+		{
+			"mattn/emmet-vim",
+			ft = { "html", "css", "javascript", "vue", "scss" },
+		},
+		{
+			"aca/emmet-ls",
+			ft = {
+				"html",
+				"css",
+				"javascript",
+        "scss",
+        "vue"
+			},
+		},
     {
       "JoosepAlviste/nvim-ts-context-commentstring",
       event = "BufRead",
