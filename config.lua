@@ -9,6 +9,9 @@ vim.opt.cmdheight = 2
 vim.opt.relativenumber = true
 vim.opt.timeoutlen = 200 -- increase this to your liking
 vim.opt.mouse=""
+vim.opt.tabstop = 2
+vim.opt.softtabstop = 2
+vim.opt.shiftwidth = 2
 
 -- Lvim config options
 lvim.lint_on_save = true
