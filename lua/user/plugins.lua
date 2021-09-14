@@ -70,7 +70,17 @@ M.config = function ()
     {
       "kchmck/vim-coffee-script",
       event = "BufRead",
+    },
+    {
+      "JoosepAlviste/nvim-ts-context-commentstring",
+      event = "BufRead",
     }
+    -- {
+    --   "reisnobre/gcr.nvim",
+    --   config = function()
+    --     require("gcr").setup()
+    --   end
+    -- }
   }
 end
 
