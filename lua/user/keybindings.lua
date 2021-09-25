@@ -1,10 +1,7 @@
 local M = {}
 
 M.config = function ()
-
   lvim.keys.normal_mode["<C-s>"] = ":w<cr>"
-  lvim.keys.normal_mode["<leader>rf"] = ":%s,<C-r><C-w>,"
-  lvim.keys.normal_mode["<leader>rl"] = ":s,<C-r><C-w>,"
   lvim.keys.normal_mode["gd"] = "<cmd>Trouble lsp_definitions<cr>"
   lvim.keys.normal_mode["gr"] = "<cmd>Trouble lsp_references<cr>"
 
@@ -24,10 +21,12 @@ M.config = function ()
   lvim.builtin.which_key.mappings["f"] = {
     name = "+Telescope",
     p = { "<cmd>Telescope find_files<cr>", "Find files" },
+    o = { "<cmd>Telescope oldfiles<cr>", "Old files" },
     a = { "<cmd>Telescope live_grep<cr>", "Grep files" },
     b = { "<cmd>Telescope buffers<cr>", "Buffers" },
     c = { "<cmd>Telescope colorscheme<cr>", "ColorSchemes" },
     s = { "<cmd>Telescope projects<cr>", "Projects" },
+    m = { "<cmd>Telescope marks<cr>", "Marks" },
     g = {
       name = "+Git",
       c = { "<cmd>Telescope git_commits<cr>", "Git commits" },
