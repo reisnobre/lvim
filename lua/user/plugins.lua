@@ -64,6 +64,13 @@ M.config = function ()
       end,
       event = "BufRead",
     },
+    {
+      "kevinhwang91/nvim-bqf",
+      config = function()
+        require("user.bqf").config()
+      end,
+      event = "BufRead",
+    },
     { "nvim-treesitter/playground",
       event = "BufRead",
     },
