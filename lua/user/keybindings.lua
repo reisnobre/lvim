@@ -5,9 +5,6 @@ M.config = function ()
   lvim.keys.normal_mode["gd"] = "<cmd>Trouble lsp_definitions<cr>"
   lvim.keys.normal_mode["gr"] = "<cmd>Trouble lsp_references<cr>"
 
-  -- Override default lsp keybindings to user Trouble
-
-
   -- Additional Leader bindings for WhichKey
   lvim.builtin.which_key.mappings.s = { ":update<cr>", "QuickSave" }
   lvim.builtin.which_key.mappings.n = { ":NvimTreeToggle<CR>", "Toggle NvimTree" }
@@ -17,7 +14,7 @@ M.config = function ()
   lvim.builtin.which_key.mappings.g.s = { "<cmd>G<cr>", "Fugitive Git" }
   lvim.builtin.which_key.mappings.g.a = { "<cmd>lua require 'gitsigns'.stage_hunk()<cr>", "State hunk" }
 
-  --
+  -- Telescope keybindings
   lvim.builtin.which_key.mappings["f"] = {
     name = "+Telescope",
     p = { "<cmd>Telescope find_files<cr>", "Find files" },
