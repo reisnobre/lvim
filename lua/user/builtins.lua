@@ -3,6 +3,7 @@ local M = {}
 M.config = function()
   -- Base builtins
   lvim.builtin.dashboard.active = true
+  -- lvim.builtin.dashboard.footer = {'Hello'}
 
   lvim.builtin.project.exclude_dirs = { "~/Archive/*" }
 
@@ -34,6 +35,9 @@ M.config = function()
 
   -- Lang configuration
   lvim.lang.tailwindcss.lsp.active = true
+
+  -- Cmp customization
+  require("user.builtin.cmp").config()
 end
 
 return M
