@@ -19,22 +19,28 @@ M.config = function ()
     name = "+Telescope",
     p = { "<cmd>Telescope find_files<cr>", "Find files" },
     o = { "<cmd>Telescope oldfiles<cr>", "Old files" },
+    m = { "<cmd>Telescope marks<cr>", "Marks" },
+    f = { "<cmd>lua require('user.telescope').grep_last_search({layout_strategy = \"vertical\"})<cr>", "Last Search" },
+    z = { "<cmd>lua require('user.telescope').search_only_certain_files()<cr>", "Certain Filetype" },
+    i = { "<cmd>lua require('user.telescope').installed_plugins()<cr>", "Installed Plugins" },
+    b = { "<cmd>lua require('user.telescope').curbuf()<cr>", "Current Buffer" },
+
     a = { "<cmd>Telescope live_grep<cr>", "Grep files" },
-    b = { "<cmd>Telescope buffers<cr>", "Buffers" },
     c = { "<cmd>Telescope colorscheme<cr>", "ColorSchemes" },
     s = { "<cmd>Telescope projects<cr>", "Projects" },
-    m = { "<cmd>Telescope marks<cr>", "Marks" },
+    P = { "<cmd>lua require('user.telescope').project_search()<cr>", "Project" }, -- Broken
     g = {
       name = "+Git",
+      g = { "<cmd>lua require('user.telescope').git_files()<cr>", "Git Files" },
       c = { "<cmd>Telescope git_commits<cr>", "Git commits" },
       C = { "<cmd>Telescope git_bcommits<cr>", "Checkout commit(for current file)" },
       b = { "<cmd>Telescope git_branches<cr>", "Git branches" },
-      s = { "<cmd>Telescope git_status<cr>", "Git status" }
+      s = { "<cmd>lua require('user.telescope').git_status()<cr>", "Git Status" },
     },
     l = {
       name = "+Lsp",
       a = { "<cmd>lua require('user.telescope').code_actions()<CR>", "Code Actions" }
-    }
+    },
   }
 
   lvim.builtin.which_key.mappings["t"] = {
@@ -58,6 +64,13 @@ M.config = function ()
     name = "Exec",
     j = { "<cmd>TermExec cmd='echo y | rm public/js/dependencies.js; gulp compile-js'<CR>", "Compile-js" }
 
+  }
+
+  lvim.builtin.which_key.mappings["R"] = {
+    name = "Replace",
+    f = { "<cmd>lua require('spectre').open_file_search()<cr>", "Current Buffer" },
+    p = { "<cmd>lua require('spectre').open()<cr>", "Project" },
+    w = { "<cmd>lua require('spectre').open_visual({select_word=true})<cr>", "Replace Word" },
   }
 end
 

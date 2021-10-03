@@ -95,7 +95,23 @@ M.config = function ()
     {
       "JoosepAlviste/nvim-ts-context-commentstring",
       event = "BufRead",
+    },
+    {
+      "nvim-telescope/telescope-fzf-native.nvim",
+      run = "make",
+      after = "telescope.nvim",
+      config = function()
+        require("telescope").load_extension "fzf"
+      end,
+    },
+    {
+      "windwp/nvim-spectre",
+      event = "BufRead",
+      config = function()
+        require("user.spectre").config()
+      end,
     }
+
     -- {
     --   "reisnobre/gcr.nvim",
     --   config = function()
