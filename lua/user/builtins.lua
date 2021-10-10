@@ -10,18 +10,28 @@ M.config = function()
   lvim.builtin.terminal.direction = 'horizontal'
   lvim.builtin.terminal.shading_factor = 3
 
---   -- Telescope
+  -- Telescope
   lvim.builtin.telescope.defaults.path_display = { shorten = 10 }
   lvim.builtin.telescope.defaults.layout_strategy = "horizontal"
   lvim.builtin.telescope.defaults.layout_config = require("user.telescope").layout_config()
 
---   -- Nvimtree
+  -- Nvimtree
   lvim.builtin.nvimtree.side = "left"
   lvim.builtin.nvimtree.show_icons.git = 1
   lvim.builtin.nvimtree.hide_dotfiles = 0
   lvim.builtin.nvimtree.setup.auto_open = 0
+  lvim.builtin.nvimtree.setup.diagnostics = {
+    enable = true,
+    icons = {
+      hint = "",
+      info = "",
+      warning = "",
+      error = "",
+    },
+  }
 
---   -- Treesitter
+
+  -- Treesitter
   lvim.builtin.treesitter.ensure_installed = "maintained"
   lvim.builtin.treesitter.ignore_install = { "haskell" }
   lvim.builtin.treesitter.highlight.enabled = true

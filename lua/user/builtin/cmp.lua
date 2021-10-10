@@ -2,6 +2,13 @@ local M = {}
 
 M.config = function ()
   lvim.builtin.cmp.documentation.border = { "╭", "─", "╮", "│", "╯", "─", "╰", "│" }
+  lvim.builtin.cmp.formatting.kind_icons = require("user.lsp_kind").symbols()
+
+  lvim.builtin.cmp.experimental = {
+    ghost_text = false,
+    native_menu = true,
+    custom_menu = true,
+  }
 
   lvim.builtin.cmp.sources = {
     { name = "nvim_lsp", max_item_count = 7 },
@@ -14,30 +21,20 @@ M.config = function ()
     { name = "treesitter" },
     { name = "crates" },
   }
-  lvim.builtin.cmp.formatting = {
-    format = function(entry, vim_item)
-      local cmp_kind = require("user.lsp_kind").cmp_kind
-      vim_item.kind = cmp_kind(vim_item.kind)
-      vim_item.menu = ({
-        buffer = "(Buffer)",
-        nvim_lsp = "(LSP)",
-        luasnip = "(Snip)",
-        treesitter = " ",
-        nvim_lua = "(NvLua)",
-        spell = " 暈",
-        emoji = "  ",
-        path = "  ",
-        calc = "  ",
-        cmp_tabnine = "  ",
-      })[entry.source.name]
-      vim_item.dup = ({
-        buffer = 1,
-        path = 1,
-        nvim_lsp = 0,
-      })[entry.source.name] or 1
-      return vim_item
-    end,
+
+  lvim.builtin.cmp.formatting.source_names = {
+    buffer = "(Buffer)",
+    nvim_lsp = "(LSP)",
+    luasnip = "(Snip)",
+    treesitter = " ",
+    nvim_lua = "(NvLua)",
+    spell = " 暈",
+    emoji = "  ",
+    path = "  ",
+    calc = "  ",
+    cmp_tabnine = "  ",
   }
+
 end
 
 return M

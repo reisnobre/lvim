@@ -7,9 +7,9 @@ M.config = function()
   end
 
   local sed_args = nil
-  if vim.fn.has "mac" == 1 then
-    sed_args = { "-I", "" }
-  end
+  -- if vim.fn.has "mac" == 1 then
+  --   sed_args = { "-I", "" }
+  -- end
 
   spectre.setup {
 
@@ -111,7 +111,7 @@ M.config = function()
     },
     replace_engine = {
       ["sed"] = {
-        cmd = "sed",
+        cmd = "gsed",
         args = sed_args,
       },
       options = {
