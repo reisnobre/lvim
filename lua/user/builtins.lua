@@ -30,7 +30,6 @@ M.config = function()
     },
   }
 
-
   -- Treesitter
   lvim.builtin.treesitter.ensure_installed = "maintained"
   lvim.builtin.treesitter.ignore_install = { "haskell" }
@@ -42,6 +41,9 @@ M.config = function()
   -- LSP
   lvim.lsp.document_highlight = false
   lvim.lsp.diagnostics.virtual_text = false
+
+  -- Linter configuration
+  require("user.linters").config()
 
   -- Cmp customization
   require("user.builtin.cmp").config()
