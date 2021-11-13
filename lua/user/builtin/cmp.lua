@@ -5,8 +5,8 @@ M.config = function ()
   lvim.builtin.cmp.formatting.kind_icons = require("user.lsp_kind").symbols()
 
   lvim.builtin.cmp.experimental = {
-    ghost_text = false,
-    native_menu = true,
+    ghost_text = true,
+    native_menu = false,
     custom_menu = true,
   }
 

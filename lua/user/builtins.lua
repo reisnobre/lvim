@@ -9,6 +9,10 @@ M.config = function()
   lvim.builtin.terminal.active = true
   lvim.builtin.terminal.direction = 'horizontal'
   lvim.builtin.terminal.shading_factor = 3
+  lvim.builtin.notify.active = true
+
+  -- lvim.builtin.which_key.setup.window.winblend = 10
+  -- lvim.builtin.which_key.setup.window.border = "none"
 
   -- Telescope
   lvim.builtin.telescope.defaults.path_display = { shorten = 10 }
@@ -41,6 +45,11 @@ M.config = function()
   -- LSP
   lvim.lsp.document_highlight = false
   lvim.lsp.diagnostics.virtual_text = false
+  lvim.lsp.automatic_servers_installation = false
+  vim.list_extend(lvim.lsp.override, { "volar" })
+
+  -- Tailwindcss
+  require("user.tailwind")
 
   -- Linter configuration
   require("user.linters").config()

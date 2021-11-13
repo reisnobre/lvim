@@ -30,7 +30,7 @@ M.config = function ()
     },
     { "lukas-reineke/indent-blankline.nvim",
       config = function()
-        require "user.blankline"
+        require("user.indent").config()
       end,
       event = "BufRead",
     },
@@ -92,10 +92,6 @@ M.config = function ()
         "vue"
 			},
 		},
-    {
-      "JoosepAlviste/nvim-ts-context-commentstring",
-      event = "BufRead",
-    },
     {
       "windwp/nvim-spectre",
       event = "BufRead",

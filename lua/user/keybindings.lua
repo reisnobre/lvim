@@ -14,32 +14,50 @@ M.config = function ()
   lvim.builtin.which_key.mappings.g.s = { "<cmd>G<cr>", "Fugitive Git" }
   lvim.builtin.which_key.mappings.g.a = { "<cmd>lua require 'gitsigns'.stage_hunk()<cr>", "State hunk" }
 
+  lvim.builtin.which_key.mappings["b"] = {
+		name = "+barbar",
+    o = { "<cmd>BufferCloseAllButCurrent<cr>", "close all but current buffer" },
+		h = { "<cmd>BufferCloseBuffersLeft<cr>", "close all buffers to the left" },
+		l = { "<cmd>BufferCloseBuffersRight<cr>", "close all BufferLines to the right" },
+		d = { "<cmd>BufferOrderByDirectory<cr>", "sort BufferLines automatically by directory" },
+		L = { "<cmd>BufferOrderByLanguage<cr>", "sort BufferLines automatically by language" },
+		b = { "<cmd>Telescope buffers theme=get_ivy<CR>", "buffers" },
+		q = { "<cmd>BufferWipeout<cr>", "wipeout buffer" },
+	}
+
+
+  lvim.builtin.which_key.mappings["d"] = {
+		name = "+dotfiles",
+		d = { "<cmd>lua require('user.telescope.custom-finders').find_dotfiles()<CR>", "Find dotfiles" },
+		g = { "<cmd>lua require('user.telescope.custom-finders').grep_dotfiles()<CR>", "Grep dotfiles" },
+	}
+
   -- Telescope keybindings
   lvim.builtin.which_key.mappings["f"] = {
     name = "+Telescope",
     p = { "<cmd>Telescope find_files<cr>", "Find files" },
     o = { "<cmd>Telescope oldfiles<cr>", "Old files" },
     m = { "<cmd>Telescope marks<cr>", "Marks" },
-    f = { "<cmd>lua require('user.telescope').grep_last_search({layout_strategy = \"vertical\"})<cr>", "Last Search" },
-    z = { "<cmd>lua require('user.telescope').search_only_certain_files()<cr>", "Certain Filetype" },
-    i = { "<cmd>lua require('user.telescope').installed_plugins()<cr>", "Installed Plugins" },
-    b = { "<cmd>lua require('user.telescope').curbuf()<cr>", "Current Buffer" },
+    f = { "<cmd>lua require('user.telescope.custom-finders').grep_last_search({layout_strategy = \"vertical\"})<cr>", "Last Search" },
+    z = { "<cmd>lua require('user.telescope.custom-finders').search_only_certain_files()<cr>", "Certain Filetype" },
+    i = { "<cmd>lua require('user.telescope.custom-finders').installed_plugins()<cr>", "Installed Plugins" },
+    b = { "<cmd>lua require('user.telescope.custom-finders').curbuf()<cr>", "Current Buffer" },
 
     a = { "<cmd>Telescope live_grep<cr>", "Grep files" },
     c = { "<cmd>Telescope colorscheme<cr>", "ColorSchemes" },
     s = { "<cmd>Telescope projects<cr>", "Projects" },
-    P = { "<cmd>lua require('user.telescope').project_search()<cr>", "Project" }, -- Broken
+    P = { "<cmd>lua require('user.telescope.custom-finders').project_search()<cr>", "Project" }, -- Broken
     g = {
       name = "+Git",
-      g = { "<cmd>lua require('user.telescope').git_files()<cr>", "Git Files" },
+      g = { "<cmd>lua require('user.telescope.custom-finders').git_files()<cr>", "Git Files" },
       c = { "<cmd>Telescope git_commits<cr>", "Git commits" },
       C = { "<cmd>Telescope git_bcommits<cr>", "Checkout commit(for current file)" },
       b = { "<cmd>Telescope git_branches<cr>", "Git branches" },
-      s = { "<cmd>lua require('user.telescope').git_status()<cr>", "Git Status" },
+      s = { "<cmd>lua require('user.telescope.custom-finders').git_status()<cr>", "Git Status" },
     },
     l = {
       name = "+Lsp",
-      a = { "<cmd>lua require('user.telescope').code_actions()<CR>", "Code Actions" }
+      a = { "<cmd>lua require('user.telescope.custom-finders').code_actions()<CR>", "Code Actions" }
     },
   }
 
