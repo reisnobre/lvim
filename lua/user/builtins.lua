@@ -22,7 +22,6 @@ M.config = function()
   -- Nvimtree
   lvim.builtin.nvimtree.side = "left"
   lvim.builtin.nvimtree.show_icons.git = 1
-  lvim.builtin.nvimtree.hide_dotfiles = 0
   lvim.builtin.nvimtree.setup.auto_open = 0
   lvim.builtin.nvimtree.setup.diagnostics = {
     enable = true,
@@ -48,7 +47,7 @@ M.config = function()
   lvim.lsp.automatic_servers_installation = false
   vim.list_extend(lvim.lsp.override, { "volar" })
 
-  -- Tailwindcss
+  -- -- Tailwindcss
   require("user.tailwind")
 
   -- Linter configuration

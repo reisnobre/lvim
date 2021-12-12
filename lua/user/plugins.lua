@@ -24,7 +24,7 @@ M.config = function ()
     },
     { "ray-x/lsp_signature.nvim",
       config = function()
-        require("user/lsp_signature").config()
+        require("user/signature").config()
       end,
       event = "InsertEnter",
     },
@@ -71,9 +71,6 @@ M.config = function ()
       end,
       event = "BufRead",
     },
-    { "nvim-treesitter/playground",
-      event = "BufRead",
-    },
     {
       "kchmck/vim-coffee-script",
       event = "BufRead",
@@ -99,13 +96,6 @@ M.config = function ()
         require("user.spectre").config()
       end,
     }
-
-    -- {
-    --   "reisnobre/gcr.nvim",
-    --   config = function()
-    --     require("gcr").setup()
-    --   end
-    -- }
   }
 end
 
