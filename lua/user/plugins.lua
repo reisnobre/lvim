@@ -5,38 +5,17 @@ M.config = function ()
   local fugitive_commands = { "G", "Git", "Gdiffsplit", "Gread", "Gwrite", "Ggrep", "GMove", "GDelete", "GBrowse", "GRemove", "GRename", "Glgrep", "Gedit" }
 
   lvim.plugins = {
-    { "reisnobre/Colorschemes" },
-    { "tpope/vim-fugitive", cmd = {
-        "G",
-        "Git",
-        "Gdiffsplit",
-        "Gread",
-        "Gwrite",
-        "Ggrep",
-        "GMove",
-        "GDelete",
-        "GBrowse",
-        "GRemove",
-        "GRename",
-        "Glgrep",
-        "Gedit",
-      }
-    },
-    { "norcalli/nvim-colorizer.lua",
-      event = "BufRead",
-    },
+    --- Workflow
+    -- Git management, commit, push and more
+    { "tpope/vim-fugitive", cmd = fugitive_commands },
+    -- Function signatures
     { "ray-x/lsp_signature.nvim",
       config = function()
         require("user/signature").config()
       end,
       event = "InsertEnter",
     },
-    { "lukas-reineke/indent-blankline.nvim",
-      config = function()
-        require("user.indent").config()
-      end,
-      event = "BufRead",
-    },
+    -- Better diagnostics, references and more
     {
       "folke/trouble.nvim",
       requires = "kyazdani42/nvim-web-devicons",
@@ -46,13 +25,23 @@ M.config = function ()
       cmd = "Trouble",
       event = "BufRead",
     },
-    { "tpope/vim-repeat",
+    -- Better quickfix preview and list
+    {
+      "kevinhwang91/nvim-bqf",
+      config = function()
+        require("user.bqf").config()
+      end,
       event = "BufRead",
     },
-    { "tpope/vim-surround",
-      keys = { "c","d","y" },
+    -- Find and replace across the whole project
+    {
+      "windwp/nvim-spectre",
       event = "BufRead",
+      config = function()
+        require("user.spectre").config()
+      end,
     },
+    -- Run tests quickly
     { "vim-test/vim-test",
       cmd = { "Test*" },
       keys = { "<localleader>tf", "<localleader>tn", "<localleader>ts" },
@@ -74,24 +63,35 @@ M.config = function ()
       end,
       event = "BufRead",
     },
+    --- Language
+		{ "mattn/emmet-vim", ft = frontend_file_types },
+		{ "aca/emmet-ls", ft = frontend_file_types },
+    --- Theme
+    -- Colorscheme
     {
-      "kchmck/vim-coffee-script",
+      "rebelot/kanagawa.nvim",
+      config = function()
+        require("user.theme").kanagawa()
+      end,
+    },
+    --- Utility
+    -- Display hex colors preview
+    { "norcalli/nvim-colorizer.lua", event = "BufRead" },
+    -- Repeat last command by pressing . (dot)
+    { "tpope/vim-repeat", event = "BufRead" },
+    -- Change surround brackets, quotes and more
+    { "tpope/vim-surround", keys = { "c","d","y" }, event = "BufRead" },
+    -- Syntax highlight for Coffescript
+    { "kchmck/vim-coffee-script", event = "BufRead" },
+    -- Show indentation guides
+    { "lukas-reineke/indent-blankline.nvim",
+      config = function()
+        require("user.indent").config()
+      end,
       event = "BufRead",
     },
-		{
-			"mattn/emmet-vim",
-			ft = { "html", "css", "javascript", "vue", "scss" },
-		},
-		{
-			"aca/emmet-ls",
-			ft = {
-				"html",
-				"css",
-				"javascript",
-        "scss",
-        "vue"
-			},
-		},
+    --- Others
+    -- Show LSP requests loading
     {
       "windwp/nvim-spectre",
       event = "BufRead",
