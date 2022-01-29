@@ -2,7 +2,7 @@
 lvim.leader = "space"
 lvim.lint_on_save = true
 lvim.format_on_save = false
-lvim.colorscheme = "norddark"
+lvim.colorscheme = "kanagawa"
 lvim.transparent_window = false
 lvim.debug = true
 
