@@ -93,12 +93,11 @@ M.config = function ()
     --- Others
     -- Show LSP requests loading
     {
-      "windwp/nvim-spectre",
-      event = "BufRead",
+      "j-hui/fidget.nvim",
       config = function()
-        require("user.spectre").config()
+        require("user.fidget").config()
       end,
-    }
+    },
   }
 end
 
