@@ -56,12 +56,13 @@ M.config = function ()
       end,
       event = "BufRead",
     },
+    -- Motion provider
     {
-      "kevinhwang91/nvim-bqf",
+      "ggandor/lightspeed.nvim",
       config = function()
-        require("user.bqf").config()
+        require("user.lightspeed").config()
       end,
-      event = "BufRead",
+      disable = lvim.builtin.motion_provider ~= "lightspeed",
     },
     --- Language
 		{ "mattn/emmet-vim", ft = frontend_file_types },
