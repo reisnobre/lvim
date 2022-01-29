@@ -1,10 +1,6 @@
 local M = {}
 
 M.config = function ()
-  lvim.keys.normal_mode["<C-s>"] = ":w<cr>"
-  lvim.keys.normal_mode["gd"] = "<cmd>Trouble lsp_definitions<cr>"
-  lvim.keys.normal_mode["gr"] = "<cmd>Trouble lsp_references<cr>"
-
   -- Additional Leader bindings for WhichKey
   lvim.builtin.which_key.mappings.s = { ":update<cr>", "QuickSave" }
   lvim.builtin.which_key.mappings.n = { ":NvimTreeToggle<CR>", "Toggle NvimTree" }
@@ -23,13 +19,6 @@ M.config = function ()
 		L = { "<cmd>BufferOrderByLanguage<cr>", "sort BufferLines automatically by language" },
 		b = { "<cmd>Telescope buffers theme=get_ivy<CR>", "buffers" },
 		q = { "<cmd>BufferWipeout<cr>", "wipeout buffer" },
-	}
-
-
-  lvim.builtin.which_key.mappings["d"] = {
-		name = "+dotfiles",
-		d = { "<cmd>lua require('user.telescope.custom-finders').find_dotfiles()<CR>", "Find dotfiles" },
-		g = { "<cmd>lua require('user.telescope.custom-finders').grep_dotfiles()<CR>", "Grep dotfiles" },
 	}
 
   -- Telescope keybindings
@@ -90,6 +79,23 @@ M.config = function ()
     p = { "<cmd>lua require('spectre').open()<cr>", "Project" },
     w = { "<cmd>lua require('spectre').open_visual({select_word=true})<cr>", "Replace Word" },
   }
+
+  lvim.builtin.which_key.mappings["d"] = {
+		name = "+dotfiles",
+		d = { "<cmd>lua require('user.telescope.custom-finders').find_dotfiles()<CR>", "Find dotfiles" },
+		g = { "<cmd>lua require('user.telescope.custom-finders').grep_dotfiles()<CR>", "Grep dotfiles" },
+	}
+end
+
+M.set_lightspeed_keymaps = function()
+  vim.cmd [[
+nmap s <Plug>Lightspeed_s
+nmap S <Plug>Lightspeed_S
+nmap <expr> f reg_recording() . reg_executing() == "" ? "<Plug>Lightspeed_f" : "f"
+nmap <expr> F reg_recording() . reg_executing() == "" ? "<Plug>Lightspeed_F" : "F"
+nmap <expr> t reg_recording() . reg_executing() == "" ? "<Plug>Lightspeed_t" : "t"
+nmap <expr> T reg_recording() . reg_executing() == "" ? "<Plug>Lightspeed_T" : "T"
+  ]]
 end
 
 return M
