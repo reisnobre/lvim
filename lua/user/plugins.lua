@@ -1,6 +1,9 @@
 local M = {}
 
 M.config = function ()
+  local frontend_file_types = { "html", "css", "javascript", "vue", "scss" }
+  local fugitive_commands = { "G", "Git", "Gdiffsplit", "Gread", "Gwrite", "Ggrep", "GMove", "GDelete", "GBrowse", "GRemove", "GRename", "Glgrep", "Gedit" }
+
   lvim.plugins = {
     { "reisnobre/Colorschemes" },
     { "tpope/vim-fugitive", cmd = {
