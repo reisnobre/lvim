@@ -5,7 +5,7 @@ M.config = function ()
   local formatters = require "lvim.lsp.null-ls.formatters"
   formatters.setup {
     {
-      exe = "prettierd",
+      exe = "prettier_d_slim",
       filetypes = {
         "javascriptreact",
         "javascript",
