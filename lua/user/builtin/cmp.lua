@@ -1,8 +1,22 @@
 local M = {}
 
 M.config = function ()
+  local kind = require "user.lsp_kind"
   lvim.builtin.cmp.documentation.border = { "╭", "─", "╮", "│", "╯", "─", "╰", "│" }
-  lvim.builtin.cmp.formatting.kind_icons = require("user.lsp_kind").symbols()
+  lvim.builtin.cmp.formatting.kind_icons = kind.cmp_kind
+  lvim.builtin.cmp.formatting.source_names = {
+    buffer = "(Buffer)",
+    nvim_lsp = "(LSP)",
+    luasnip = "(Snip)",
+    treesitter = "",
+    nvim_lua = "(NvLua)",
+    spell = "暈",
+    emoji = "",
+    path = "",
+    calc = "",
+    cmp_tabnine = "ﮧ",
+    ["vim-dadbod-completion"] = "𝓐",
+  }
 
   lvim.builtin.cmp.experimental = {
     ghost_text = true,
@@ -21,20 +35,6 @@ M.config = function ()
     { name = "treesitter" },
     { name = "crates" },
   }
-
-  lvim.builtin.cmp.formatting.source_names = {
-    buffer = "(Buffer)",
-    nvim_lsp = "(LSP)",
-    luasnip = "(Snip)",
-    treesitter = " ",
-    nvim_lua = "(NvLua)",
-    spell = " 暈",
-    emoji = "  ",
-    path = "  ",
-    calc = "  ",
-    cmp_tabnine = "  ",
-  }
-
 end
 
 return M
