@@ -4,23 +4,18 @@ M.config = function()
   local kind = require "user.lsp_kind"
 
   -- Base builtins
-  lvim.builtin.dashboard.active = true
   lvim.builtin.terminal.active = true
   lvim.builtin.terminal.direction = 'horizontal'
   lvim.builtin.terminal.shading_factor = 3
+  lvim.builtin.bufferline.active = true
   lvim.builtin.notify.active = true
   lvim.builtin.motion_provider = 'lightspeed' -- change this to use different motion providers ( hop or lightspeed )
 
   -- Telescope
-  lvim.builtin.telescope.defaults.path_display = { shorten = 10 }
-  lvim.builtin.telescope.defaults.layout_strategy = "horizontal"
-  lvim.builtin.telescope.defaults.layout_config = require("user.telescope").layout_config()
+  require("user.telescope").config()
 
-  -- Nvimtree
-  lvim.builtin.nvimtree.side = "left"
-  lvim.builtin.nvimtree.show_icons.git = 1
-  lvim.builtin.nvimtree.setup.auto_open = 0
-  lvim.builtin.nvimtree.icons = kind.nvim_tree_icons
+   -- NvimTree
+  -- =========================================
   lvim.builtin.nvimtree.setup.diagnostics = {
     enable = true,
     icons = {
@@ -30,9 +25,13 @@ M.config = function()
       error = kind.icons.error,
     },
   }
+  lvim.builtin.nvimtree.setup.renderer.icons.glyphs = kind.nvim_tree_icons
+  lvim.builtin.nvimtree.on_config_done = function(_)
+    lvim.builtin.which_key.mappings.n = { ":NvimTreeToggle<CR>", "Toggle NvimTree" }
+  end
 
   -- Treesitter
-  lvim.builtin.treesitter.ensure_installed = "maintained"
+  lvim.builtin.treesitter.ensure_installed = { "html", "css", "scss", "javascript", "vue", "yaml", "bash", "comment", "dockerfile", "dot", "json", "json5", "lua", "markdown", "php", "typescript", "vim"}
   lvim.builtin.treesitter.ignore_install = { "haskell" }
   lvim.builtin.treesitter.highlight.enabled = true
   lvim.builtin.treesitter.matchup.enable = true
@@ -43,7 +42,8 @@ M.config = function()
   lvim.lsp.document_highlight = false
   lvim.lsp.diagnostics.virtual_text = false
   lvim.lsp.automatic_servers_installation = false
-  vim.list_extend(lvim.lsp.override, { "volar" })
+  lvim.lsp.diagnostics.float.focusable = false
+  lvim.lsp.float.focusable = true
 
   lvim.lsp.diagnostics.signs.values = {
     { name = "DiagnosticSignError", text = kind.icons.error },
@@ -52,8 +52,14 @@ M.config = function()
     { name = "DiagnosticSignHint", text = kind.icons.hint },
   }
 
-  -- -- Tailwindcss
-  require("user.tailwind")
+  -- Bufferline
+  require("user.bufferline").config()
+
+  -- Tailwindcss
+  require("user.tailwind").config()
+
+  -- Markdown
+  require("user.null-ls.markdown").config()
 
   -- Linter configuration
   require("user.linters").config()

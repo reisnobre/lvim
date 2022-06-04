@@ -2,7 +2,6 @@ local M = {}
 
 M.config = function ()
   local kind = require "user.lsp_kind"
-  lvim.builtin.cmp.documentation.border = { "╭", "─", "╮", "│", "╯", "─", "╰", "│" }
   lvim.builtin.cmp.formatting.kind_icons = kind.cmp_kind
   lvim.builtin.cmp.formatting.source_names = {
     buffer = "(Buffer)",

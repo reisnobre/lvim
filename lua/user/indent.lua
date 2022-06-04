@@ -14,6 +14,7 @@ M.config = function ()
   vim.g.indent_blankline_filetype_exclude = {
     "NvimTree",
     "Trouble",
+    "alpha",
     "dashboard",
     "fugitive",
     "help",

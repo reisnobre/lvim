@@ -1,12 +1,12 @@
+local lsp_kind = require "user.lsp_kind"
 local M = {}
--- local actions = require "telescope.actions"
-local action_state = require "telescope.actions.state"
-local themes = require "telescope.themes"
-local builtin = require "telescope.builtin"
 
--- beautiful default layout for telescope prompt
-function M.layout_config()
-  return {
+M.config = function ()
+  lvim.builtin.telescope.defaults.path_display = { shorten = 10 }
+  lvim.builtin.telescope.defaults.layout_strategy = "horizontal"
+  lvim.builtin.telescope.defaults.prompt_prefix = lsp_kind.cmp_kind.Variable
+  lvim.builtin.telescope.defaults.selection_caret = "  "
+  lvim.builtin.telescope.defaults.layout_config = {
     width = 0.90,
     height = 0.85,
     preview_cutoff = 120,

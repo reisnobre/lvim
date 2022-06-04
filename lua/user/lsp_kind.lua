@@ -49,6 +49,9 @@ M.icons = {
   config = " ",
   git = "",
   magic = " ",
+  vue = "﵂",
+  html = "",
+  database = ""
 }
 
 M.nvim_tree_icons = {

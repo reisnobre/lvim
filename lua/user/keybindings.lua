@@ -3,7 +3,7 @@ local M = {}
 M.config = function ()
   -- Additional Leader bindings for WhichKey
   lvim.builtin.which_key.mappings.s = { ":update<cr>", "QuickSave" }
-  lvim.builtin.which_key.mappings.n = { ":NvimTreeToggle<CR>", "Toggle NvimTree" }
+  -- lvim.builtin.which_key.mappings.n = { ":NvimTreeToggle<CR>", "Toggle NvimTree" }
   lvim.builtin.which_key.mappings.T.p = { "<cmd>TSPlaygroundToggle<cr>", "Playground" }
 
   -- Additional git command
@@ -11,14 +11,13 @@ M.config = function ()
   lvim.builtin.which_key.mappings.g.a = { "<cmd>lua require 'gitsigns'.stage_hunk()<cr>", "State hunk" }
 
   lvim.builtin.which_key.mappings["b"] = {
-		name = "+barbar",
-    o = { "<cmd>BufferCloseAllButCurrent<cr>", "close all but current buffer" },
-		h = { "<cmd>BufferCloseBuffersLeft<cr>", "close all buffers to the left" },
-		l = { "<cmd>BufferCloseBuffersRight<cr>", "close all BufferLines to the right" },
-		d = { "<cmd>BufferOrderByDirectory<cr>", "sort BufferLines automatically by directory" },
-		L = { "<cmd>BufferOrderByLanguage<cr>", "sort BufferLines automatically by language" },
-		b = { "<cmd>Telescope buffers theme=get_ivy<CR>", "buffers" },
-		q = { "<cmd>BufferWipeout<cr>", "wipeout buffer" },
+		name = "+bufferline",
+		h = { "<cmd>BufferLineCloseLeft<cr>", "close all buffers to the left" },
+		l = { "<cmd>BufferLineCloseRight<cr>", "close all BufferLines to the right" },
+    j = { ":BufferLinePick<cr>", "jump to a buffer" },
+    J = { ":BufferLinePickClose<cr>", "close target buffer" },
+    t = { ":BufferLineGroupToggle front<CR>", "toggle front tabs" },
+    T = { ":BufferLineGroupToggle back<CR>", "toggle back tabs" },
 	}
 
   -- Telescope keybindings
@@ -73,18 +72,36 @@ M.config = function ()
 
   }
 
+  lvim.builtin.which_key.mappings["G"] = { ":Glow<CR>", "Preview current document" }
+
   lvim.builtin.which_key.mappings["R"] = {
     name = "Replace",
-    f = { "<cmd>lua require('spectre').open_file_search()<cr>", "Current Buffer" },
+    f = { "<cmd>lua require('spectre').open_file_search({select_word=true})<cr>", "Current Buffer" },
     p = { "<cmd>lua require('spectre').open()<cr>", "Project" },
     w = { "<cmd>lua require('spectre').open_visual({select_word=true})<cr>", "Replace Word" },
   }
+
+  lvim.builtin.which_key.mappings["r"] = {
+    name = "File Replace",
+    f = { ":%s,<C-r><C-w>,", "Replace word under cursor on file" },
+    l = { ":s,<C-r><C-w>,", "Replace word under cursor in line" },
+  }
+
 
   lvim.builtin.which_key.mappings["d"] = {
 		name = "+dotfiles",
 		d = { "<cmd>lua require('user.telescope.custom-finders').find_dotfiles()<CR>", "Find dotfiles" },
 		g = { "<cmd>lua require('user.telescope.custom-finders').grep_dotfiles()<CR>", "Grep dotfiles" },
 	}
+
+  lvim.builtin.which_key.mappings["z"] = {
+    name = "+Zettelkasten",
+    p = { "<cmd>lua require('telekasten').panel()<CR>", "Telekasten panel"},
+    t = { "<cmd>lua require('telekasten').toggle_todo()<CR>", "Toggle todo"},
+    i = { "<cmd>lua require('telekasten').insert_link()<CR>", "Insert link"},
+    g = { "<cmd>lua require('telekasten').follow_link()<CR>", "Follow link"},
+    f = { "<cmd>lua require('telekasten').show_tags()<CR>", "Show tags"}
+  }
 end
 
 M.set_lightspeed_keymaps = function()

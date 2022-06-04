@@ -53,6 +53,7 @@ M.config = function ()
         let g:test#custom_strategies = {'toggleterm': function('ToggleTermStrategy')}
         ]]
         vim.g["test#strategy"] = "toggleterm"
+        vim.g["test#php#phpunit#executable"] = 'dcr --rm phpunit'
       end,
       event = "BufRead",
     },
@@ -64,15 +65,31 @@ M.config = function ()
       end,
       disable = lvim.builtin.motion_provider ~= "lightspeed",
     },
+    {
+      "folke/todo-comments.nvim",
+      requires = "nvim-lua/plenary.nvim",
+      config = function()
+        require("user.todo_comments").config()
+      end,
+      event = "BufRead",
+    },
     --- Language
-		{ "mattn/emmet-vim", ft = frontend_file_types },
-		{ "aca/emmet-ls", ft = frontend_file_types },
-    --- Theme
+    { "mattn/emmet-vim", ft = frontend_file_types },
+    { "aca/emmet-ls", ft = frontend_file_types },
+    --- UI
     -- Colorscheme
     {
       "rebelot/kanagawa.nvim",
       config = function()
         require("user.theme").kanagawa()
+      end,
+    },
+    -- Dashboard
+    {
+      "goolord/alpha-nvim",
+      event = "BufWinEnter",
+      config = function()
+        require("user.dashboard").config()
       end,
     },
     --- Utility
@@ -99,6 +116,17 @@ M.config = function ()
         require("user.fidget").config()
       end,
     },
+    { "ellisonleao/glow.nvim" },
+    { "renerocksai/telekasten.nvim",
+      config = function ()
+        require("user.telekasten").config()
+      end
+    },
+    { "folke/zen-mode.nvim",
+      config = function ()
+        require("user.zen_mode").config()
+      end
+    }
   }
 end
 

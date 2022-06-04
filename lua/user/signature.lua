@@ -1,7 +1,7 @@
 local M = {}
 
 M.config = function()
-  local cfg = {
+  local opts = {
     bind = true,
     doc_lines = 10,
     floating_window = false, -- show hint in a floating window, set to false for virtual text only mode
@@ -29,7 +29,7 @@ M.config = function()
     shadow_blend = 36, -- if you using shadow as border use this set the opacity
     shadow_guibg = "Black", -- if you using shadow as border use this set the color e.g. 'Green' or '#121315'
   }
-  require("lsp_signature").setup(cfg)
+  require("lsp_signature").setup(opts)
 end
 
 return M
