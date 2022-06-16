@@ -1,5 +1,5 @@
-lvim.lang.css.formatters = {
-  {
-    exe = "prettierd"
-  }
-}
+-- lvim.lang.css.formatters = {
+--   {
+--     exe = "prettierd"
+--   }
+-- }
