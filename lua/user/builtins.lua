@@ -66,6 +66,9 @@ M.config = function()
 
   -- Cmp customization
   require("user.builtin.cmp").config()
+
+  -- Null ls customization
+  require("user.null-ls").config()
 end
 
 return M

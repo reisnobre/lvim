@@ -13,6 +13,7 @@ M.config = function ()
         "typescript",
         "json",
         "markdown",
+        "vue"
       },
     },
   }
@@ -29,7 +30,7 @@ M.config = function ()
         "typescript",
         "vue",
       },
-    },
+    }
   }
 end
 

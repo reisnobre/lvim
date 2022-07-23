@@ -126,6 +126,11 @@ M.config = function ()
       config = function ()
         require("user.zen_mode").config()
       end
+    },
+    {
+      "phpactor/phpactor",
+      config = function ()
+      end
     }
   }
 end
