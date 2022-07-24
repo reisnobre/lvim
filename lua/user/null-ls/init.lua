@@ -39,15 +39,23 @@ M.config = function()
       prefer_local = "node_modules/.bin",
     },
     nls.builtins.diagnostics.phpmd.with {
+      -- condition = function(utils)
+      --   return not utils.root_has_file { "phpmd.rules.xml" }
+      -- end,
       filetypes = { "php" },
       args = { "$FILENAME", "json", "phpmd.rules.xml" },
+      prefer_local = "vendor/bin",
     },
     nls.builtins.diagnostics.phpstan.with {
       filetypes = { "php" },
       prefer_local = "vendor/bin",
     },
     nls.builtins.diagnostics.phpcs.with {
+      -- condition = function(utils)
+      --   return not utils.root_has_file { "phpcs.xml" }
+      -- end,
       filetypes = { "php" },
+      prefer_local = "vendor/bin",
     }
   }
 

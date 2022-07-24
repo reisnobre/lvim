@@ -102,6 +102,16 @@ M.config = function ()
     g = { "<cmd>lua require('telekasten').follow_link()<CR>", "Follow link"},
     f = { "<cmd>lua require('telekasten').show_tags()<CR>", "Show tags"}
   }
+
+  lvim.builtin.which_key.mappings["P"] = {
+    name = "+Phpactor",
+    c = {
+      name = "+Class",
+      e = { ":PhpactorClassExpand<CR>", "Phpactor class expand" },
+      i = { ":PhpactorClassInflect<CR>", "Phpactor class inflect" },
+      n = { ":PhpactorClassNew<CR>", "Phpactor class new" }
+    }
+  }
 end
 
 M.set_lightspeed_keymaps = function()
