@@ -3,6 +3,7 @@ local M = {}
 M.config = function()
   vim.g.dashboard_disable_statusline = 1
   vim.g.dashboard_enable_session = 0
+  vim.g.catppuccin_flavour = "mocha"
   vim.o.foldexpr = "nvim_treesitter#foldexpr()"
   vim.o.foldlevel = 4
   vim.o.foldminlines = 1

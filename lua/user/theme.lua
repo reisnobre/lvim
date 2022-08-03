@@ -9,7 +9,7 @@ M.kanagawa = function()
     keywordStyle = { italic = true},
     statementStyle = { bold = true },
     typeStyle = {},
-    variablebuiltinStyle = { italic = true},
+    variablebuiltinStyle = { italic = true },
     specialReturn = true,       -- special highlight for the return keyword
     specialException = true,    -- special highlight for exception handling keywords
     transparent = false,        -- do not set background color
@@ -17,6 +17,59 @@ M.kanagawa = function()
     globalStatus = false,       -- adjust window separators highlight for laststatus=3
     colors = {},
     overrides = {},
+  }
+end
+
+M.catppuccin = function()
+  local catppuccin = require "catppuccin"
+  catppuccin.setup {
+    transparent_background = lvim.transparent_window,
+    term_colors = false,
+    styles = {
+      comments = { "italic", "bold" },
+      keywords = { "italic", "bold" },
+      loops = {},
+      functions = {},
+      strings = {},
+      variables = {},
+      numbers = {},
+      booleans = {},
+      properties = {},
+      types = {},
+      operators = {},
+      conditionals = { "italic" },
+    },
+    dim_inactive = {
+      enabled = lvim.builtin.global_statusline,
+      shade = "dark",
+      percentage = 0.15,
+    },
+    integrations = {
+      lsp_trouble = true,
+      treesitter = true,
+      telescope = true,
+      cmp = true,
+      which_key = true,
+      lightspeed = true,
+      nvimtree = {
+        transparent_panel = lvim.transparent_window,
+      },
+      native_lsp = {
+        enabled = true,
+        virtual_text = {
+          errors = { "italic" },
+          hints = { "italic" },
+          warnings = { "italic" },
+          information = { "italic" },
+        },
+        underlines = {
+          errors = { "undercurl" },
+          hints = {},
+          warnings = { "undercurl" },
+          information = {},
+        },
+      },
+    },
   }
 end
 
@@ -38,6 +91,37 @@ M.colors = {
       conflict = "#252535",
       delete = "#C34043",
       change = "#DCA561",
+    },
+  },
+  catppuccin_colors = {
+    rosewater = "#F5E0DC",
+    flamingo = "#F2CDCD",
+    violet = "#DDB6F2",
+    pink = "#F5C2E7",
+    red = "#F28FAD",
+    maroon = "#E8A2AF",
+    orange = "#F8BD96",
+    yellow = "#FAE3B0",
+    green = "#ABE9B3",
+    blue = "#96CDFB",
+    cyan = "#89DCEB",
+    teal = "#B5E8E0",
+    lavender = "#C9CBFF",
+    white = "#D9E0EE",
+    gray2 = "#C3BAC6",
+    gray1 = "#988BA2",
+    gray0 = "#6E6C7E",
+    black4 = "#575268",
+    bg_br = "#302D41",
+    bg = "#1A1826",
+    bg_alt = "#1E1E2E",
+    fg = "#D9E0EE",
+    black = "#1A1826",
+    git = {
+      add = "#ABE9B3",
+      change = "#96CDFB",
+      delete = "#F28FAD",
+      conflict = "#FAE3B0",
     },
   },
 }
