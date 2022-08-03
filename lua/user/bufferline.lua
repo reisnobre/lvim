@@ -13,30 +13,6 @@ M.config = function ()
     result = table.concat(result, " ")
     return #result > 0 and result or ""
   end
-
-  lvim.builtin.bufferline.options.groups = {
-    items = {
-      { name = "ungrouped" },
-      {
-        highlight = { guisp = "#42b883" },
-        name = "front",
-        icon = kind.icons.html,
-        matcher = function(buf)
-          return buf.filename:match ".vue"
-            or buf.filename:match ".js"
-            or buf.filename:match ".scss"
-        end,
-      },
-      {
-        highlight = { guisp = "#fb503b" },
-        name = "back",
-        icon = kind.icons.database,
-        matcher = function(buf)
-          return buf.filename:match ".php"
-        end,
-      },
-    }
-  }
 end
 
 return M
