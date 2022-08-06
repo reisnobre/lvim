@@ -126,4 +126,48 @@ M.colors = {
   },
 }
 
+local colors = M.colors.catppuccin_colors
+
+M.mode_color = {
+  n = colors.git.delete,
+  i = colors.green,
+  v = colors.yellow,
+  [""] = colors.blue,
+  V = colors.yellow,
+  c = colors.cyan,
+  no = colors.magenta,
+  s = colors.orange,
+  S = colors.orange,
+  [""] = colors.orange,
+  ic = colors.yellow,
+  R = colors.violet,
+  Rv = colors.violet,
+  cv = colors.red,
+  ce = colors.red,
+  r = colors.cyan,
+  rm = colors.cyan,
+  ["r?"] = colors.cyan,
+  ["!"] = colors.red,
+  t = colors.red,
+}
+
+M.file_icon_colors = {
+  Brown = "#905532",
+  Aqua = "#3AFFDB",
+  Blue = "#689FB6",
+  DarkBlue = "#44788E",
+  Purple = "#834F79",
+  Red = "#AE403F",
+  Beige = "#F5C06F",
+  Yellow = "#F09F17",
+  Orange = "#D4843E",
+  DarkOrange = "#F16529",
+  Pink = "#CB6F6F",
+  Salmon = "#EE6E73",
+  Green = "#8FAA54",
+  LightGreen = "#31B53E",
+  White = "#FFFFFF",
+  LightBlue = "#5fd7ff",
+}
+
 return M

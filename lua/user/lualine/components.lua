@@ -1,149 +1,14 @@
 local M = {}
-local kind = require("user.lsp_kind")
-
-local function get_file_info()
-  return vim.fn.expand "%:t", vim.fn.expand "%:e"
-end
-
-local function get_file_icon()
-  local icon
-  local ok, devicons = pcall(require, "nvim-web-devicons")
-  if not ok then
-    print "No icon plugin found. Please install 'kyazdani42/nvim-web-devicons'"
-    return ""
-  end
-  local f_name, f_extension = get_file_info()
-  icon = devicons.get_icon(f_name, f_extension)
-  if icon == nil then
-    icon = kind.icons.question
-  end
-  return icon
-end
-
-local function get_file_icon_color()
-  local f_name, f_ext = get_file_info()
-  local has_devicons, devicons = pcall(require, "nvim-web-devicons")
-  if has_devicons then
-    local icon, iconhl = devicons.get_icon(f_name, f_ext)
-    if icon ~= nil then
-      return vim.fn.synIDattr(vim.fn.hlID(iconhl), "fg")
-    end
-  end
-
-  local icon = get_file_icon():match "%S+"
-  for k, _ in pairs(kind.file_icons) do
-    if vim.fn.index(kind.file_icons[k], icon) ~= -1 then
-      return file_icon_colors[k]
-    end
-  end
-end
-
-local function clock()
-  return kind.icons.clock .. os.date "%H:%M"
-end
-
-local function diff_source()
-  local gitsigns = vim.b.gitsigns_status_dict
-  if gitsigns then
-    return {
-      added = gitsigns.added,
-      modified = gitsigns.changed,
-      removed = gitsigns.removed,
-    }
-  end
-end
-
-local function testing()
-  if vim.g.testing_status == "running" then
-    return " "
-  end
-  if vim.g.testing_status == "fail" then
-    return ""
-  end
-  if vim.g.testing_status == "pass" then
-    return " "
-  end
-  return nil
-end
-local function using_session()
-  return (vim.g.using_persistence ~= nil)
-end
-
 local _time = os.date "*t"
+local kind = require("user.lsp_kind")
 local colors = require("user.theme").colors.catppuccin_colors
--- Color table for highlights
-local mode_color = {
-  n = colors.git.delete,
-  i = colors.green,
-  v = colors.yellow,
-  [""] = colors.blue,
-  V = colors.yellow,
-  c = colors.cyan,
-  no = colors.magenta,
-  s = colors.orange,
-  S = colors.orange,
-  [""] = colors.orange,
-  ic = colors.yellow,
-  R = colors.violet,
-  Rv = colors.violet,
-  cv = colors.red,
-  ce = colors.red,
-  r = colors.cyan,
-  rm = colors.cyan,
-  ["r?"] = colors.cyan,
-  ["!"] = colors.red,
-  t = colors.red,
-}
-
+local mode_color = require("user.theme").mode_color
 local conditions = require("user.lualine.conditions")
-
-local function mode()
-  local mod = vim.fn.mode()
-
-  local selector = math.floor(_time.hour / 8) + 1
-  local normal_icons = {
-    "  ",
-    "  ",
-    "  ",
-  }
-  if mod == "n" or mod == "no" or mod == "nov" then
-    return normal_icons[selector]
-  elseif mod == "i" or mod == "ic" or mod == "ix" then
-    local insert_icons = {
-      "  ",
-      "  ",
-      "  ",
-    }
-    return insert_icons[selector]
-  elseif mod == "V" or mod == "v" or mod == "vs" or mod == "Vs" or mod == "cv" then
-    local verbose_icons = {
-      " 勇",
-      "  ",
-      "  ",
-    }
-    return verbose_icons[selector]
-  elseif mod == "c" or mod == "ce" then
-    local command_icons = {
-      "  ",
-      "  ",
-      "  ",
-    }
-
-    return command_icons[selector]
-  elseif mod == "r" or mod == "rm" or mod == "r?" or mod == "R" or mod == "Rc" or mod == "Rv" or mod == "Rv" then
-    local replace_icons = {
-      "  ",
-      "  ",
-      "  ",
-    }
-    return replace_icons[selector]
-  end
-  return normal_icons[selector]
-end
+local helpers = require("user.lualine.helpers")
 
 M.mode = {
   function()
-    return mode()
+    return helpers.mode()
   end,
   color = function()
     return { bg = mode_color[vim.fn.mode()], fg = colors.bg_br }
@@ -190,12 +55,12 @@ M.win_number = {
 
 M.file_type_icon = {
   function()
-    vim.api.nvim_command("hi! LualineFileIconColor guifg=" .. get_file_icon_color() .. " guibg=" .. colors.bg_br)
+    vim.api.nvim_command("hi! LualineFileIconColor guifg=" .. helpers.get_file_icon_color() .. " guibg=" .. colors.bg_br)
     local fname = vim.fn.expand "%:p"
     if string.find(fname, "term://") ~= nil then
       return kind.icons.term
     end
-    return get_file_icon()
+    return helpers.get_file_icon()
   end,
   padding = { left = 1, right = 0 },
   cond = conditions.buffer_not_empty,
@@ -242,7 +107,7 @@ M.file_name_and_info = {
 
 M.git_diff = {
   "diff",
-  source = diff_source,
+  source = helpers.diff_source,
   symbols = { added = "  ", modified = "柳", removed = " " },
   diff_color = {
     added = { fg = colors.git.add, bg = colors.bg },
@@ -275,10 +140,10 @@ M.virtual_env = {
 
 M.testing_status = {
   provider = function()
-    return testing()
+    return helpers.testing()
   end,
   enabled = function()
-    return testing() ~= nil
+    return helpers.testing() ~= nil
   end,
   hl = {
     fg = colors.fg,
@@ -299,7 +164,7 @@ M.using_persistence = {
     end
   end,
   enabled = function()
-    return using_session()
+    return helpers.using_session()
   end,
   hl = {
     fg = colors.fg,

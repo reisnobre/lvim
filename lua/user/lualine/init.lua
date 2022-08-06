@@ -3,31 +3,9 @@ local _time = os.date "*t"
 local colors = require("user.theme").colors.catppuccin_colors
 local conditions = require("user.lualine.conditions")
 local components = require("user.lualine.components")
+local mode_color = require("user.theme").mode_color
 
 -- Color table for highlights
-local mode_color = {
-  n = colors.git.delete,
-  i = colors.green,
-  v = colors.yellow,
-  [""] = colors.blue,
-  V = colors.yellow,
-  c = colors.cyan,
-  no = colors.magenta,
-  s = colors.orange,
-  S = colors.orange,
-  [""] = colors.orange,
-  ic = colors.yellow,
-  R = colors.violet,
-  Rv = colors.violet,
-  cv = colors.red,
-  ce = colors.red,
-  r = colors.cyan,
-  rm = colors.cyan,
-  ["r?"] = colors.cyan,
-  ["!"] = colors.red,
-  t = colors.red,
-}
-
 M.config = function()
 
   -- Config
