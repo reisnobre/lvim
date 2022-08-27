@@ -22,12 +22,6 @@ M.config = function()
   -- Bufferline
   require("user.bufferline").config()
 
-  -- Tailwindcss
-  require("user.tailwind").config()
-
-  -- Markdown
-  require("user.null-ls.markdown").config()
-
   -- Linter configuration
   require("user.linters").config()
 
