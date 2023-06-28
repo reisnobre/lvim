@@ -17,7 +17,7 @@ M.config = function()
   require("user.treesitter").config()
 
   -- LSP
-  -- require("user.lsp").config()
+  require("user.lsp").config()
 
   -- Bufferline
   require("user.bufferline").config()
