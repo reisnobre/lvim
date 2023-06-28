@@ -4,7 +4,6 @@ M.config = function()
   -- Base builtins
   lvim.builtin.terminal.active = false
   lvim.builtin.bufferline.active = true
-  lvim.builtin.motion_provider = 'lightspeed'
   lvim.builtin.nvimtree.active = true
   lvim.builtin.lir.active = false
 
@@ -18,7 +17,7 @@ M.config = function()
   require("user.treesitter").config()
 
   -- LSP
-  require("user.lsp").config()
+  -- require("user.lsp").config()
 
   -- Bufferline
   require("user.bufferline").config()

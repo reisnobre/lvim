@@ -1,109 +1,74 @@
 local M = {}
 
-local custom_actions = require("user.telescope.custom-actions")
+local action_state = require "telescope.actions.state"
+local themes = require "telescope.themes"
+local builtin = require "telescope.builtin"
+local actions = require "telescope.actions"
+local telescope_utils = require "telescope.utils"
 
-local _, builtin = pcall(require, "telescope.builtin")
-local _, finders = pcall(require, "telescope.finders")
-local _, pickers = pcall(require, "telescope.pickers")
-local _, sorters = pcall(require, "telescope.sorters")
-local _, themes = pcall(require, "telescope.themes")
-
-function M.grep_string_v2(opts)
-	opts = opts or M.theme()
-
-	local search_string = vim.fn.execute("history search")
-	local search_list = vim.split(search_string, "\n")
-	local results = {}
-	for i = #search_list, 3, -1 do
-		local item = search_list[i]
-		local _, finish = string.find(item, "%d+ +")
-		if not vim.tbl_contains(results, string.sub(item, finish + 1)) then
-			table.insert(results, string.sub(item, finish + 1))
-		end
-	end
-
-	pickers.new(opts, {
-		prompt_title = "Search",
-		finder = finders.new_table(results),
-		sorter = sorters.fuzzy_with_index_bias,
-		attach_mappings = function(_, map)
-			map("i", "<C-y>", custom_actions.import_entry)
-			map("n", "<C-y>", custom_actions.import_entry)
-			map("i", "<C-space>", custom_actions.import_entry)
-			map("n", "<C-space>", custom_actions.import_entry)
-			map("i", "<CR>", custom_actions.fuzzy_filter_results)
-			map("n", "<CR>", custom_actions.fuzzy_filter_results)
-			return true
-		end,
-	}):find()
+function M._multiopen(prompt_bufnr, open_cmd)
+  local picker = action_state.get_current_picker(prompt_bufnr)
+  local num_selections = table.getn(picker:get_multi_selection())
+  local border_contents = picker.prompt_border.contents[1]
+  if not (string.find(border_contents, "Find Files") or string.find(border_contents, "Git Files")) then
+    actions.select_default(prompt_bufnr)
+    return
+  end
+  if num_selections > 1 then
+    vim.cmd "bw!"
+    for _, entry in ipairs(picker:get_multi_selection()) do
+      vim.cmd(string.format("%s %s", open_cmd, entry.value))
+    end
+    vim.cmd "stopinsert"
+  else
+    if open_cmd == "vsplit" then
+      actions.file_vsplit(prompt_bufnr)
+    elseif open_cmd == "split" then
+      actions.file_split(prompt_bufnr)
+    elseif open_cmd == "tabe" then
+      actions.file_tab(prompt_bufnr)
+    else
+      actions.file_edit(prompt_bufnr)
+    end
+  end
+end
+function M.multi_selection_open_vsplit(prompt_bufnr)
+  M._multiopen(prompt_bufnr, "vsplit")
+end
+function M.multi_selection_open_split(prompt_bufnr)
+  M._multiopen(prompt_bufnr, "split")
+end
+function M.multi_selection_open_tab(prompt_bufnr)
+  M._multiopen(prompt_bufnr, "tabe")
+end
+function M.multi_selection_open(prompt_bufnr)
+  M._multiopen(prompt_bufnr, "edit")
 end
 
-function M.fuzzy_grep_string(query)
-	query = query or {}
-	builtin.grep_string(themes.get_ivy({
-		prompt_title = "Fuzzy grep string, initial query: " .. query,
-		search = query,
-	}))
-end
+-- beautiful default layout for telescope prompt
+function M.layout_config()
+  return {
+    width = 0.90,
+    height = 0.85,
+    preview_cutoff = 120,
+    prompt_position = "bottom",
+    horizontal = {
+      preview_width = function(_, cols, _)
+        return math.floor(cols * 0.6)
+      end,
+    },
+    vertical = {
+      width = 0.9,
+      height = 0.95,
+      preview_height = 0.5,
+    },
 
-function M.live_grep_v2(opts)
-	opts = opts or {}
-	builtin.live_grep(vim.tbl_deep_extend("force", {
-		prompt_title = "Search",
-		attach_mappings = function(_, map)
-			map("i", "<C-g>", custom_actions.fuzzy_filter_results)
-			map("n", "<C-g>", custom_actions.fuzzy_filter_results)
-			return true
-		end,
-	}, opts))
-end
-
-function M.grep_dotfiles()
-	M.live_grep_v2({
-		search_dirs = { vim.fn.stdpath("config"), os.getenv("ZDOTDIR") },
-		hidden = true,
-	})
-end
-
-function M.find_dotfiles()
-	local opts = themes.get_ivy({
-		previewer = false,
-		sorting_strategy = "ascending",
-		layout_strategy = "bottom_pane",
-		layout_config = {
-			height = 15,
-			width = 0.5,
-		},
-		prompt = ">> ",
-		prompt_title = "~ dotfiles ~",
-		cwd = "~",
-		find_command = { "git", "dots", "ls-files" },
-	})
-	require("telescope.builtin").find_files(opts)
-end
-
-function M.find_runtime_files(opts)
-	opts = opts or themes.get_ivy({})
-	local runtimepath = vim.opt.runtimepath:get()
-	local runtimedirs = {}
-
-	for _, entry in ipairs(runtimepath) do
-		vim.list_extend(runtimedirs, vim.fn.globpath(entry, "", 1, 1))
-	end
-
-	pickers.new(opts, {
-		prompt_title = "select a runtime directory",
-		layout_strategy = "flex",
-		finder = finders.new_table(runtimedirs),
-		sorter = sorters.get_generic_fuzzy_sorter(opts),
-		attach_mappings = function(_, map)
-			-- map("i", "<cr>", no_redraw_find_in_dir)
-			map("i", "<cr>", custom_actions.find_in_dir)
-			map("i", "<c-f>", custom_actions.find_in_dir)
-			map("i", "<c-g>", custom_actions.grep_in_dir)
-			return true
-		end,
-	}):find()
+    flex = {
+      horizontal = {
+        preview_width = 0.9,
+      },
+    },
+  }
 end
 
 -- another file string search
@@ -131,69 +96,6 @@ function M.find_string()
     },
   }
   builtin.live_grep(opts)
-end
-
--- fince file browser using telescope instead of lir
-function M.file_browser()
-  local opts
-
-  opts = {
-    sorting_strategy = "ascending",
-    scroll_strategy = "cycle",
-    layout_config = {
-      prompt_position = "top",
-    },
-    file_ignore_patterns = { "vendor/*" },
-
-    attach_mappings = function(prompt_bufnr, map)
-      local current_picker = action_state.get_current_picker(prompt_bufnr)
-
-      local modify_cwd = function(new_cwd)
-        current_picker.cwd = new_cwd
-        current_picker:refresh(opts.new_finder(new_cwd), { reset_prompt = true })
-      end
-
-      map("i", "-", function()
-        modify_cwd(current_picker.cwd .. "/..")
-      end)
-
-      map("i", "~", function()
-        modify_cwd(vim.fn.expand "~")
-      end)
-
-      local modify_depth = function(mod)
-        return function()
-          opts.depth = opts.depth + mod
-
-          local this_picker = action_state.get_current_picker(prompt_bufnr)
-          this_picker:refresh(opts.new_finder(current_picker.cwd), { reset_prompt = true })
-        end
-      end
-
-      map("i", "<M-=>", modify_depth(1))
-      map("i", "<M-+>", modify_depth(-1))
-
-      map("n", "yy", function()
-        local entry = action_state.get_selected_entry()
-        vim.fn.setreg("+", entry.value)
-      end)
-
-      return true
-    end,
-  }
-
-  builtin.file_browser(opts)
-end
-
--- show code actions in a fancy floating window
-function M.code_actions()
-  local opts = {
-    winblend = 10,
-    border = true,
-    previewer = false,
-    shorten_path = false,
-  }
-  builtin.lsp_code_actions(themes.get_dropdown(opts))
 end
 
 -- show refrences to this using language server
@@ -232,23 +134,9 @@ function M.find_updir()
   builtin.find_files(opts)
 end
 
-function M.grep_last_search(opts)
-  opts = opts or {}
-
-  -- \<getreg\>\C
-  -- -> Subs out the search things
-  local register = vim.fn.getreg("/"):gsub("\\<", ""):gsub("\\>", ""):gsub("\\C", "")
-
-  opts.path_display = { "shorten" }
-  opts.word_match = "-w"
-  opts.search = register
-
-  builtin.grep_string(opts)
-end
-
 function M.installed_plugins()
   builtin.find_files {
-    cwd = join_paths(os.getenv "LUNARVIM_RUNTIME_DIR", "site", "pack", "packer"),
+    cwd = join_paths(vim.env.LUNARVIM_RUNTIME_DIR, "site", "pack", "lazy"),
   }
 end
 
@@ -256,16 +144,25 @@ function M.project_search()
   builtin.find_files {
     previewer = false,
     layout_strategy = "vertical",
-    cwd = require("nvim_lsp.util").root_pattern ".git"(vim.fn.expand "%:p"),
+    cwd = require("lspconfig/util").root_pattern ".git"(vim.fn.expand "%:p"),
   }
 end
 
 function M.curbuf()
   local opts = themes.get_dropdown {
     winblend = 10,
-    border = true,
     previewer = false,
     shorten_path = false,
+    borderchars = {
+      prompt = { "─", "│", " ", "│", "╭", "╮", "│", "│" },
+      results = { "─", "│", "─", "│", "├", "┤", "╯", "╰" },
+      preview = { "─", "│", "─", "│", "╭", "╮", "╯", "╰" },
+    },
+    border = {},
+    layout_config = {
+      width = 0.45,
+      prompt_position = "top",
+    },
   }
   builtin.current_buffer_fuzzy_find(opts)
 end
@@ -273,9 +170,18 @@ end
 function M.git_status()
   local opts = themes.get_dropdown {
     winblend = 10,
-    border = true,
     previewer = false,
     shorten_path = false,
+    borderchars = {
+      prompt = { "─", "│", " ", "│", "╭", "╮", "│", "│" },
+      results = { "─", "│", "─", "│", "├", "┤", "╯", "╰" },
+      preview = { "─", "│", "─", "│", "╭", "╮", "╯", "╰" },
+    },
+    border = {},
+    layout_config = {
+      width = 0.45,
+      prompt_position = "top",
+    },
   }
 
   -- Can change the git icons using this.
@@ -307,7 +213,7 @@ function M.git_files()
     path = nil
   end
 
-  local width = 0.35
+  local width = 0.45
   if path and string.find(path, "sourcegraph.*sourcegraph", 1, false) then
     width = 0.6
   end
@@ -316,15 +222,55 @@ function M.git_files()
     winblend = 5,
     previewer = false,
     shorten_path = false,
+    borderchars = {
+      prompt = { "─", "│", " ", "│", "╭", "╮", "│", "│" },
+      results = { "─", "│", "─", "│", "├", "┤", "╯", "╰" },
+      preview = { "─", "│", "─", "│", "╭", "╮", "╯", "╰" },
+    },
+    border = {},
     cwd = path,
     layout_config = {
       width = width,
+      prompt_position = "top",
     },
   }
 
   opts.file_ignore_patterns = {
     "^[.]vale/",
   }
+  builtin.git_files(opts)
+end
+
+function M.grep_string_visual()
+  local visual_selection = function()
+    local save_previous = vim.fn.getreg "a"
+    vim.api.nvim_command 'silent! normal! "ay'
+    local selection = vim.fn.trim(vim.fn.getreg "a")
+    vim.fn.setreg("a", save_previous)
+    return vim.fn.substitute(selection, [[\n]], [[\\n]], "g")
+  end
+  require("telescope.builtin").live_grep {
+    default_text = visual_selection(),
+  }
+end
+
+function M.find_project_files(opts)
+  opts = opts or {}
+  if opts.cwd then
+    opts.cwd = vim.fn.expand(opts.cwd)
+  else
+    opts.cwd = vim.loop.cwd()
+  end
+
+  local _, ret = telescope_utils.get_os_command_output({ "git", "rev-parse", "--show-toplevel" }, opts.cwd)
+  if ret ~= 0 then
+    local in_worktree = telescope_utils.get_os_command_output({ "git", "rev-parse", "--is-inside-work-tree" }, opts.cwd)
+    local in_bare = telescope_utils.get_os_command_output({ "git", "rev-parse", "--is-bare-repository" }, opts.cwd)
+    if in_worktree[1] ~= "true" and in_bare[1] ~= "true" then
+      builtin.find_files(opts)
+      return
+    end
+  end
   builtin.git_files(opts)
 end
 

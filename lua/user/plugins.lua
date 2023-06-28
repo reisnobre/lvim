@@ -19,7 +19,7 @@ M.config = function ()
     -- Better diagnostics, references and more
     {
       "folke/trouble.nvim",
-      requires = "kyazdani42/nvim-web-devicons",
+      dependencies = { "nvim-tree/nvim-web-devicons" },
       config = function()
         require("trouble").setup()
       end,
@@ -42,30 +42,7 @@ M.config = function ()
         require("user.spectre").config()
       end,
     },
-    -- Run tests quickly
-    { "vim-test/vim-test",
-      cmd = { "Test*" },
-      keys = { "<localleader>tf", "<localleader>tn", "<localleader>ts" },
-      config = function()
-        vim.cmd [[
-        function! ToggleTermStrategy(cmd) abort
-        call luaeval("require('toggleterm').exec(_A[1])", [a:cmd])
-        endfunction
-        let g:test#custom_strategies = {'toggleterm': function('ToggleTermStrategy')}
-        ]]
-        vim.g["test#strategy"] = "toggleterm"
-        vim.g["test#php#phpunit#executable"] = 'dcr --rm phpunit'
-      end,
-      event = "BufRead",
-    },
     -- Motion provider
-    -- {
-    --   "ggandor/lightspeed.nvim",
-    --   config = function()
-    --     require("user.lightspeed").config()
-    --   end,
-    --   disable = lvim.builtin.motion_provider ~= "lightspeed",
-    -- },
     {
       "folke/flash.nvim",
       config = function()
@@ -74,7 +51,7 @@ M.config = function ()
     },
     {
       "folke/todo-comments.nvim",
-      requires = "nvim-lua/plenary.nvim",
+      dependencies = { "nvim-lua/plenary.nvim" },
       config = function()
         require("user.todo_comments").config()
       end,
@@ -84,14 +61,6 @@ M.config = function ()
     { "mattn/emmet-vim", ft = frontend_file_types },
     { "aca/emmet-ls", ft = frontend_file_types },
     --- UI
-    -- Dashboard
-    {
-      "goolord/alpha-nvim",
-      event = "BufWinEnter",
-      config = function()
-        require("user.dashboard").config()
-      end,
-    },
     --- Utility
     -- Display hex colors preview
     { "norcalli/nvim-colorizer.lua", event = "BufRead" },
@@ -100,7 +69,7 @@ M.config = function ()
     -- Change surround brackets, quotes and more
     { "tpope/vim-surround", keys = { "c","d","y" }, event = "BufRead" },
     -- Syntax highlight for Coffescript
-    { "kchmck/vim-coffee-script", event = "BufRead" },
+    -- { "kchmck/vim-coffee-script", event = "BufRead" },
     -- Show indentation guides
     { "lukas-reineke/indent-blankline.nvim",
       config = function()
@@ -116,36 +85,16 @@ M.config = function ()
         require("user.fidget").config()
       end,
     },
-    { "ellisonleao/glow.nvim" },
-    { "renerocksai/telekasten.nvim",
-      config = function ()
-        require("user.telekasten").config()
-      end
-    },
-    { "folke/zen-mode.nvim",
-      config = function ()
-        require("user.zen_mode").config()
-      end
-    },
-    {
-      "phpactor/phpactor",
-      config = function ()
-      end
-    },
     {
       "catppuccin/nvim",
-      as = "catppuccin",
-      setup = function()
+      name = "catppuccin",
+      init = function()
         vim.g.catppuccin_flavour = "mocha"
       end,
       config = function()
         require("user.theme").catppuccin()
         vim.cmd [[colorscheme catppuccin]]
       end
-    },
-    {
-      "iamcco/markdown-preview.nvim",
-      run = function() vim.fn["mkdp#util#install"]() end,
     },
     {
       "zbirenbaum/copilot.lua",
@@ -160,7 +109,7 @@ M.config = function ()
     },
     {
       "zbirenbaum/copilot-cmp",
-      requires = "zbirenbaum/copilot.lua",
+      dependencies = { "zbirenbaum/copilot.lua" },
       config = function ()
         require("copilot_cmp").setup()
       end

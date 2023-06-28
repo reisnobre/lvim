@@ -7,12 +7,14 @@ M.config = function ()
   lvim.keys.normal_mode["<S-h>"] = ":BufferLineCyclePrev<CR>"
   -- Additional Leader bindings for WhichKey
   lvim.builtin.which_key.mappings.s = { ":update<cr>", "QuickSave" }
-  -- lvim.builtin.which_key.mappings.n = { ":NvimTreeToggle<CR>", "Toggle NvimTree" }
+  lvim.builtin.which_key.mappings.n = { ":NvimTreeToggle<CR>", "Toggle NvimTree" }
   lvim.builtin.which_key.mappings.T.p = { "<cmd>TSPlaygroundToggle<cr>", "Playground" }
 
   -- Additional git command
   lvim.builtin.which_key.mappings.g.s = { "<cmd>G<cr>", "Fugitive Git" }
   lvim.builtin.which_key.mappings.g.a = { "<cmd>lua require 'gitsigns'.stage_hunk()<cr>", "State hunk" }
+        -- ["<c-v>"] = user_telescope.multi_selection_open_vsplit,
+
 
   lvim.builtin.which_key.mappings["b"] = {
 		name = "+bufferline",
@@ -118,15 +120,15 @@ M.config = function ()
   }
 end
 
-M.set_lightspeed_keymaps = function()
-  vim.cmd [[
-nmap s <Plug>Lightspeed_s
-nmap S <Plug>Lightspeed_S
-nmap <expr> f reg_recording() . reg_executing() == "" ? "<Plug>Lightspeed_f" : "f"
-nmap <expr> F reg_recording() . reg_executing() == "" ? "<Plug>Lightspeed_F" : "F"
-nmap <expr> t reg_recording() . reg_executing() == "" ? "<Plug>Lightspeed_t" : "t"
-nmap <expr> T reg_recording() . reg_executing() == "" ? "<Plug>Lightspeed_T" : "T"
-  ]]
-end
+-- M.set_lightspeed_keymaps = function()
+--   vim.cmd [[
+-- nmap s <Plug>Lightspeed_s
+-- nmap S <Plug>Lightspeed_S
+-- nmap <expr> f reg_recording() . reg_executing() == "" ? "<Plug>Lightspeed_f" : "f"
+-- nmap <expr> F reg_recording() . reg_executing() == "" ? "<Plug>Lightspeed_F" : "F"
+-- nmap <expr> t reg_recording() . reg_executing() == "" ? "<Plug>Lightspeed_t" : "t"
+-- nmap <expr> T reg_recording() . reg_executing() == "" ? "<Plug>Lightspeed_T" : "T"
+--   ]]
+-- end
 
 return M

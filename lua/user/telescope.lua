@@ -1,13 +1,9 @@
-local lsp_kind = require "user.lsp_kind"
+local themes = require "telescope.themes"
+local builtin = require "telescope.builtin"
+
 local M = {}
 
 M.config = function ()
-  lvim.builtin.telescope.defaults.dynamic_preview_title = true
-  lvim.builtin.telescope.defaults.path_display = { shorten = 10 }
-  lvim.builtin.telescope.defaults.prompt_prefix = "  "
-  lvim.builtin.telescope.defaults.selection_caret = " "
-  lvim.builtin.telescope.defaults.cache_picker = { num_pickers = 3 }
-  lvim.builtin.telescope.defaults.layout_strategy = "horizontal"
   lvim.builtin.telescope.defaults.file_ignore_patterns = {
     "vendor/*",
     "%.lock",
@@ -61,6 +57,18 @@ M.config = function ()
     "%.tar.gz",
   }
 
+  lvim.builtin.telescope.defaults.dynamic_preview_title = true
+  lvim.builtin.telescope.defaults.path_display = { shorten = 10 }
+  lvim.builtin.telescope.defaults.prompt_prefix = "  "
+  lvim.builtin.telescope.defaults.borderchars = {
+    prompt = { "─", "│", "─", "│", "╭", "╮", "╯", "╰" },
+    results = { "─", "│", "─", "│", "╭", "╮", "╯", "╰" },
+    preview = { "─", "│", "─", "│", "╭", "╮", "╯", "╰" },
+  }
+  lvim.builtin.telescope.defaults.selection_caret = "  "
+  lvim.builtin.telescope.defaults.cache_picker = { num_pickers = 3 }
+  lvim.builtin.telescope.defaults.layout_strategy = "horizontal"
+
   lvim.builtin.telescope.pickers.live_grep = {
     layout_strategy = "horizontal",
     layout_config = {
@@ -96,6 +104,13 @@ M.config = function ()
       },
     },
   }
+
+  -- lvim.builtin.telescope.defaults.mappings 
+  -- lvim.builtin.telescope.defaults.mappings {
+  --   i = {
+  --     ["<c-v>"] = user_telescope.multi_selection_open_vsplit,
+  --   }
+  -- }
 end
 
 return M
