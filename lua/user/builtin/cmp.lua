@@ -4,6 +4,7 @@ M.config = function ()
   local kind = require "user.lsp_kind"
   lvim.builtin.cmp.formatting.kind_icons = kind.cmp_kind
   lvim.builtin.cmp.formatting.source_names = {
+    copilot = "(Copilot)",
     buffer = "(Buffer)",
     nvim_lsp = "(LSP)",
     luasnip = "(Snip)",
@@ -24,10 +25,11 @@ M.config = function ()
   }
 
   lvim.builtin.cmp.sources = {
-    { name = "nvim_lsp", max_item_count = 7 },
-    { name = "buffer", max_item_count = 3 },
-    { name = "path", max_item_count = 5 },
-    { name = "luasnip", max_item_count = 3 },
+    { name = "copilot", max_item_count = 3 },
+    { name = "nvim_lsp", max_item_count = 8 },
+    { name = "buffer", max_item_count = 3, keyword_length = 5 },
+    { name = "path", max_item_count = 3 },
+    { name = "luasnip", max_item_count = 5 },
     { name = "nvim_lua" },
     { name = "calc" },
     { name = "emoji" },

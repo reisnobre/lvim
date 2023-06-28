@@ -2,6 +2,7 @@ local M = {}
 
 M.config = function ()
   -- Buffer Navigation
+  lvim.keys.insert_mode["jj"] = "<Esc>"
   lvim.keys.normal_mode["<S-l>"] = ":BufferLineCycleNext<CR>"
   lvim.keys.normal_mode["<S-h>"] = ":BufferLineCyclePrev<CR>"
   -- Additional Leader bindings for WhichKey

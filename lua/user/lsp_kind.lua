@@ -2,6 +2,7 @@ local M = {}
 
 M.cmp_kind = {
   Class = " ",
+  Copilot = "",
   Color = " ",
   Constant = "",
   Constructor = " ",
@@ -115,7 +116,8 @@ M.todo_comments = {
   PERF = "龍",
   NOTE = " ",
   ERROR = " ",
-  REFS = "",
+  REFS = " ",
+  DOCS = " ",
 }
 
 M.numbers = {

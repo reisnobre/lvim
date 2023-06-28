@@ -4,8 +4,9 @@ M.config = function()
   -- Base builtins
   lvim.builtin.terminal.active = false
   lvim.builtin.bufferline.active = true
-  lvim.builtin.notify.active = true
   lvim.builtin.motion_provider = 'lightspeed'
+  lvim.builtin.nvimtree.active = true
+  lvim.builtin.lir.active = false
 
   -- Telescope
   require("user.telescope").config()

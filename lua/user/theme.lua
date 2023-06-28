@@ -22,7 +22,7 @@ end
 
 M.catppuccin = function()
   local catppuccin = require "catppuccin"
-  catppuccin.setup {
+  catppuccin.setup({
     transparent_background = lvim.transparent_window,
     term_colors = false,
     styles = {
@@ -70,7 +70,7 @@ M.catppuccin = function()
         },
       },
     },
-  }
+  })
 end
 
 M.colors = {

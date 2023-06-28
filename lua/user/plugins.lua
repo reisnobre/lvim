@@ -8,6 +8,7 @@ M.config = function ()
     --- Workflow
     -- Git management, commit, push and more
     { "tpope/vim-fugitive", cmd = fugitive_commands },
+    { "tpope/vim-rhubarb" },
     -- Function signatures
     { "ray-x/lsp_signature.nvim",
       config = function()
@@ -58,12 +59,18 @@ M.config = function ()
       event = "BufRead",
     },
     -- Motion provider
+    -- {
+    --   "ggandor/lightspeed.nvim",
+    --   config = function()
+    --     require("user.lightspeed").config()
+    --   end,
+    --   disable = lvim.builtin.motion_provider ~= "lightspeed",
+    -- },
     {
-      "ggandor/lightspeed.nvim",
+      "folke/flash.nvim",
       config = function()
-        require("user.lightspeed").config()
+        require("user.flash").config()
       end,
-      disable = lvim.builtin.motion_provider ~= "lightspeed",
     },
     {
       "folke/todo-comments.nvim",
@@ -77,13 +84,6 @@ M.config = function ()
     { "mattn/emmet-vim", ft = frontend_file_types },
     { "aca/emmet-ls", ft = frontend_file_types },
     --- UI
-    -- Colorscheme
-    {
-      "rebelot/kanagawa.nvim",
-      config = function()
-        require("user.theme").kanagawa()
-      end,
-    },
     -- Dashboard
     {
       "goolord/alpha-nvim",
@@ -141,6 +141,28 @@ M.config = function ()
       config = function()
         require("user.theme").catppuccin()
         vim.cmd [[colorscheme catppuccin]]
+      end
+    },
+    {
+      "iamcco/markdown-preview.nvim",
+      run = function() vim.fn["mkdp#util#install"]() end,
+    },
+    {
+      "zbirenbaum/copilot.lua",
+       cmd = "Copilot",
+      event = "InsertEnter",
+      config = function()
+        require("copilot").setup({
+          suggestion = { enabled = false },
+          panel = { enabled = false }
+        })
+      end
+    },
+    {
+      "zbirenbaum/copilot-cmp",
+      requires = "zbirenbaum/copilot.lua",
+      config = function ()
+        require("copilot_cmp").setup()
       end
     }
   }

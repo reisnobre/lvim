@@ -17,6 +17,7 @@ M.config = function ()
       NOTE = { icon = icons.NOTE, alt = { "INFO", "NB" } },
       ERROR = { icon = icons.ERROR, color = "error", alt = { "ERR" } },
       REFS = { icon = icons.REFS },
+      DOCS = { icon = icons.DOCS }
     },
     highlight = { max_line_len = 120 },
     colors = {
@@ -26,6 +27,7 @@ M.config = function ()
       hint = { "DiagnosticHint" },
       hack = { "Function" },
       ref = { "FloatBorder" },
+      docs = { "DiagnosticInfo" },
       default = { "Identifier" },
     },
   }
