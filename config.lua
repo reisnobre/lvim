@@ -16,7 +16,7 @@ require("user.builtins").config()
 require("user.plugins").config()
 
 -- Autocommands
--- require("user.autocommands").config()
+require("user.autocommands").config()
 
 -- Additional keybindings
 require("user.keybindings").config()

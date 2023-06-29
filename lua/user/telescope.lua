@@ -68,6 +68,10 @@ M.config = function ()
   lvim.builtin.telescope.defaults.selection_caret = "  "
   lvim.builtin.telescope.defaults.cache_picker = { num_pickers = 3 }
   lvim.builtin.telescope.defaults.layout_strategy = "horizontal"
+  lvim.builtin.telescope.defaults.sorting_strategy = "descending"
+  -- lvim.builtin.telescope.on_config_done = function(telescope)
+  -- end
+
 
   lvim.builtin.telescope.pickers.live_grep = {
     layout_strategy = "horizontal",
@@ -104,13 +108,6 @@ M.config = function ()
       },
     },
   }
-
-  -- lvim.builtin.telescope.defaults.mappings 
-  -- lvim.builtin.telescope.defaults.mappings {
-  --   i = {
-  --     ["<c-v>"] = user_telescope.multi_selection_open_vsplit,
-  --   }
-  -- }
 end
 
 return M

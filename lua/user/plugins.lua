@@ -5,6 +5,9 @@ M.config = function ()
   local fugitive_commands = { "G", "Git", "Gdiffsplit", "Gread", "Gwrite", "Ggrep", "GMove", "GDelete", "GBrowse", "GRemove", "GRename", "Glgrep", "Gedit" }
 
   lvim.plugins = {
+    --- dependencies
+    { "MunifTanjim/nui.nvim" },
+    { "rcarriga/nvim-notify" },
     --- Workflow
     -- Git management, commit, push and more
     { "tpope/vim-fugitive", cmd = fugitive_commands },
@@ -24,7 +27,18 @@ M.config = function ()
         require("trouble").setup()
       end,
       cmd = "Trouble",
-      event = "BufRead",
+      event = "VeryLazy",
+    },
+    {
+      "folke/noice.nvim",
+      event = "VeryLazy",
+      config = function()
+        require("user.noice").config()
+      end,
+      dependencies = {
+        "MunifTanjim/nui.nvim", -- if you lazy-load any plugin below, make sure to add proper `module="..."` entries
+        "rcarriga/nvim-notify", -- `nvim-notify` is only needed, if you want to use the notification view.
+      }
     },
     -- Better quickfix preview and list
     {
@@ -32,12 +46,12 @@ M.config = function ()
       config = function()
         require("user.bqf").config()
       end,
-      event = "BufRead",
+      event = "VeryLazy",
     },
     -- Find and replace across the whole project
     {
       "windwp/nvim-spectre",
-      event = "BufRead",
+      event = "VeryLazy",
       config = function()
         require("user.spectre").config()
       end,
@@ -45,9 +59,52 @@ M.config = function ()
     -- Motion provider
     {
       "folke/flash.nvim",
+      event = "VeryLazy",
       config = function()
-        require("user.flash").config()
+        require("user._flash").config()
       end,
+      keys = {
+        {
+          "s",
+          mode = { "n", "x", "o" },
+          function()
+            require("flash").jump()
+          end,
+          desc = "Flash",
+        },
+        {
+          "S",
+          mode = { "n", "o", "x" },
+          function()
+            require("flash").treesitter()
+          end,
+          desc = "Flash Treesitter",
+        },
+        {
+          "r",
+          mode = "o",
+          function()
+            require("flash").remote()
+          end,
+          desc = "Remote Flash",
+        },
+        {
+          "R",
+          mode = { "o", "x" },
+          function()
+            require("flash").treesitter_search()
+          end,
+          desc = "Flash Treesitter Search",
+        },
+        {
+          "<c-s>",
+          mode = { "c" },
+          function()
+            require("flash").toggle()
+          end,
+          desc = "Toggle Flash Search",
+        }
+      }
     },
     {
       "folke/todo-comments.nvim",
@@ -55,7 +112,7 @@ M.config = function ()
       config = function()
         require("user.todo_comments").config()
       end,
-      event = "BufRead",
+      event = "VeryLazy",
     },
     --- Language
     { "mattn/emmet-vim", ft = frontend_file_types },
@@ -63,11 +120,11 @@ M.config = function ()
     --- UI
     --- Utility
     -- Display hex colors preview
-    { "norcalli/nvim-colorizer.lua", event = "BufRead" },
+    { "norcalli/nvim-colorizer.lua", event = "VeryLazy" },
     -- Repeat last command by pressing . (dot)
-    { "tpope/vim-repeat", event = "BufRead" },
+    { "tpope/vim-repeat", event = "VeryLazy" },
     -- Change surround brackets, quotes and more
-    { "tpope/vim-surround", keys = { "c","d","y" }, event = "BufRead" },
+    { "tpope/vim-surround", keys = { "c","d","y" }, event = "VeryLazy" },
     -- Syntax highlight for Coffescript
     -- { "kchmck/vim-coffee-script", event = "BufRead" },
     -- Show indentation guides
@@ -78,13 +135,6 @@ M.config = function ()
       event = "BufRead",
     },
     --- Others
-    -- Show LSP requests loading
-    {
-      "j-hui/fidget.nvim",
-      config = function()
-        require("user.fidget").config()
-      end,
-    },
     {
       "catppuccin/nvim",
       name = "catppuccin",
@@ -98,8 +148,8 @@ M.config = function ()
     },
     {
       "zbirenbaum/copilot.lua",
-       cmd = "Copilot",
-      event = "InsertEnter",
+      cmd = "Copilot",
+      event = "VeryLazy",
       config = function()
         require("copilot").setup({
           suggestion = { enabled = false },
@@ -110,6 +160,7 @@ M.config = function ()
     {
       "zbirenbaum/copilot-cmp",
       dependencies = { "zbirenbaum/copilot.lua" },
+      event = "VeryLazy",
       config = function ()
         require("copilot_cmp").setup()
       end

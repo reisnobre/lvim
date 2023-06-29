@@ -12,7 +12,7 @@ M.default_diagnostic_config = {
     },
   },
   virtual_text = false,
-  underline = false,
+  underline = true,
   severity_sort = true
 }
 

@@ -1,8 +1,8 @@
 local M = {}
 
 M.config = function()
-  return {
-    -- labels = "abcdefghijklmnopqrstuvwxyz",
+  local status_ok, flash = pcall(require, "flash")
+  flash.setup {
     labels = "asdfghjklqwertyuiopzxcvbnm",
     search = {
       -- search/jump in all windows
