@@ -1,6 +1,6 @@
 local M = {}
 
-M.config = function ()
+M.init = function ()
   local frontend_file_types = { "html", "css", "javascript", "vue", "scss" }
   local fugitive_commands = { "G", "Git", "Gdiffsplit", "Gread", "Gwrite", "Ggrep", "GMove", "GDelete", "GBrowse", "GRemove", "GRename", "Glgrep", "Gedit" }
 
@@ -15,7 +15,7 @@ M.config = function ()
     -- Function signatures
     { "ray-x/lsp_signature.nvim",
       config = function()
-        require("user/signature").config()
+        require("user.plugins._signature").config()
       end,
       event = "InsertEnter",
     },
@@ -33,7 +33,7 @@ M.config = function ()
       "folke/noice.nvim",
       event = "VeryLazy",
       config = function()
-        require("user.noice").config()
+        require("user.plugins._noice").config()
       end,
       dependencies = {
         "MunifTanjim/nui.nvim", -- if you lazy-load any plugin below, make sure to add proper `module="..."` entries
@@ -44,7 +44,7 @@ M.config = function ()
     {
       "kevinhwang91/nvim-bqf",
       config = function()
-        require("user.bqf").config()
+        require("user.plugins._bqf").config()
       end,
       event = "VeryLazy",
     },
@@ -53,7 +53,7 @@ M.config = function ()
       "windwp/nvim-spectre",
       event = "VeryLazy",
       config = function()
-        require("user.spectre").config()
+        require("user.plugins._spectre").config()
       end,
     },
     -- Motion provider
@@ -61,7 +61,7 @@ M.config = function ()
       "folke/flash.nvim",
       event = "VeryLazy",
       config = function()
-        require("user._flash").config()
+        require("user.plugins._flash").config()
       end,
       keys = {
         {
@@ -110,7 +110,7 @@ M.config = function ()
       "folke/todo-comments.nvim",
       dependencies = { "nvim-lua/plenary.nvim" },
       config = function()
-        require("user.todo_comments").config()
+        require("user.plugins._todo_comments").config()
       end,
       event = "VeryLazy",
     },
@@ -130,7 +130,7 @@ M.config = function ()
     -- Show indentation guides
     { "lukas-reineke/indent-blankline.nvim",
       config = function()
-        require("user.indent").config()
+        require("user.plugins._indent").config()
       end,
       event = "BufRead",
     },
@@ -142,7 +142,7 @@ M.config = function ()
         vim.g.catppuccin_flavour = "mocha"
       end,
       config = function()
-        require("user.theme").catppuccin()
+        require("user.config.theme").catppuccin()
         vim.cmd [[colorscheme catppuccin]]
       end
     },

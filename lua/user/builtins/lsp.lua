@@ -1,5 +1,5 @@
 local M = {}
-local kind = require("user.lsp_kind")
+local kind = require("user.utils.lsp_kind")
 
 M.default_diagnostic_config = {
   signs = {

@@ -1,7 +1,7 @@
 local M = {}
 local _time = os.date "*t"
-local kind = require("user.lsp_kind")
-local theme = require("user.theme")
+local kind = require("user.utils.lsp_kind")
+local theme = require("user.config.theme")
 
 M.get_file_info = function ()
   return vim.fn.expand "%:t", vim.fn.expand "%:e"

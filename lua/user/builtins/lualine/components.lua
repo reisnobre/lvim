@@ -1,10 +1,10 @@
 local M = {}
 local _time = os.date "*t"
-local kind = require("user.lsp_kind")
-local colors = require("user.theme").colors.catppuccin_colors
-local mode_color = require("user.theme").mode_color
-local conditions = require("user.lualine.conditions")
-local helpers = require("user.lualine.helpers")
+local kind = require("user.utils.lsp_kind")
+local colors = require("user.config.theme").colors.catppuccin_colors
+local mode_color = require("user.config.theme").mode_color
+local conditions = require("user.builtins.lualine.conditions")
+local helpers = require("user.builtins.lualine.helpers")
 
 M.mode = {
   function()

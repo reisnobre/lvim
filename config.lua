@@ -7,16 +7,10 @@ lvim.transparent_window = false
 lvim.debug = true
 
 -- Vim config options
-require("user.neovim").config()
+require("user.config").init()
 
 -- Builtin customization
-require("user.builtins").config()
+require("user.builtins").init()
 
 -- Additional Plugins
-require("user.plugins").config()
-
--- Autocommands
-require("user.autocommands").config()
-
--- Additional keybindings
-require("user.keybindings").config()
+require("user.plugins").init()

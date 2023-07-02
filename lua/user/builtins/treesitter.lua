@@ -1,5 +1,5 @@
 local M = {}
-local kind = require("user.lsp_kind")
+local kind = require("user.utils.lsp_kind")
 
 M.config = function ()
   lvim.builtin.treesitter.ensure_installed = { "html", "css", "scss", "javascript", "vue", "yaml", "bash", "comment", "dockerfile", "dot", "json", "json5", "lua", "markdown", "php", "typescript", "vim"}

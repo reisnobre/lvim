@@ -1,7 +1,7 @@
 local M = {}
 
 M.config = function ()
-  local kind = require "user.lsp_kind"
+  local kind = require "user.utils.lsp_kind"
   lvim.builtin.cmp.formatting.kind_icons = kind.cmp_kind
   lvim.builtin.cmp.formatting.source_names = {
     copilot = "(Copilot)",

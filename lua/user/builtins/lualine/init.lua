@@ -1,9 +1,9 @@
 local M = {}
 local _time = os.date "*t"
-local colors = require("user.theme").colors.catppuccin_colors
-local conditions = require("user.lualine.conditions")
-local components = require("user.lualine.components")
-local mode_color = require("user.theme").mode_color
+local colors = require("user.config.theme").colors.catppuccin_colors
+local conditions = require("user.builtins.lualine.conditions")
+local components = require("user.builtins.lualine.components")
+local mode_color = require("user.config.theme").mode_color
 
 -- Color table for highlights
 M.config = function()

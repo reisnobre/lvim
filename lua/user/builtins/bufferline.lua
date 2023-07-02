@@ -1,7 +1,7 @@
 local M = {}
 
 M.config = function ()
-  local kind = require "user.lsp_kind"
+  local kind = require "user.utils.lsp_kind"
   lvim.builtin.bufferline.options.diagnostics_indicator = function(_, _, diagnostics)
     local result = {}
     local symbols = { error = kind.icons.error, warning = kind.icons.warn, info = kind.icons.info }
