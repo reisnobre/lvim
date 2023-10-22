@@ -26,6 +26,7 @@ M.config = function ()
     J = { ":BufferLinePickClose<cr>", "close target buffer" },
     t = { ":BufferLineGroupToggle front<CR>", "toggle front tabs" },
     T = { ":BufferLineGroupToggle back<CR>", "toggle back tabs" },
+    D = { ":call delete(expand('%')) | bdelete!<CR>", "Delete current file" },
   }
 
   -- Telescope keybindings

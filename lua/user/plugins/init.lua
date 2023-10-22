@@ -5,11 +5,11 @@ M.init = function ()
   local fugitive_commands = { "G", "Git", "Gdiffsplit", "Gread", "Gwrite", "Ggrep", "GMove", "GDelete", "GBrowse", "GRemove", "GRename", "Glgrep", "Gedit" }
 
   lvim.plugins = {
-    --- dependencies
+    --- DOCS: dependencies
     { "MunifTanjim/nui.nvim" },
     { "rcarriga/nvim-notify" },
-    --- Workflow
-    -- Git management, commit, push and more
+    --- DOCS: Workflow
+    --  Git management, commit, push and more
     { "tpope/vim-fugitive", cmd = fugitive_commands },
     { "tpope/vim-rhubarb" },
     -- Function signatures
@@ -114,11 +114,12 @@ M.init = function ()
       end,
       event = "VeryLazy",
     },
-    --- Language
+    --- DOCS: Language
     { "mattn/emmet-vim", ft = frontend_file_types },
     { "aca/emmet-ls", ft = frontend_file_types },
-    --- UI
-    --- Utility
+    --- DOCS: UI
+
+    --- DOCS: Utility
     -- Display hex colors preview
     { "norcalli/nvim-colorizer.lua", event = "VeryLazy" },
     -- Repeat last command by pressing . (dot)
@@ -126,7 +127,7 @@ M.init = function ()
     -- Change surround brackets, quotes and more
     { "tpope/vim-surround", keys = { "c","d","y" }, event = "VeryLazy" },
     -- Syntax highlight for Coffescript
-    -- { "kchmck/vim-coffee-script", event = "BufRead" },
+    { "kchmck/vim-coffee-script", event = "BufRead" },
     -- Show indentation guides
     { "lukas-reineke/indent-blankline.nvim",
       config = function()
@@ -149,7 +150,7 @@ M.init = function ()
     {
       "zbirenbaum/copilot.lua",
       cmd = "Copilot",
-      event = "VeryLazy",
+      event = "BufRead",
       config = function()
         require("copilot").setup({
           suggestion = { enabled = false },
@@ -160,7 +161,7 @@ M.init = function ()
     {
       "zbirenbaum/copilot-cmp",
       dependencies = { "zbirenbaum/copilot.lua" },
-      event = "VeryLazy",
+      event = "BufRead",
       config = function ()
         require("copilot_cmp").setup()
       end
