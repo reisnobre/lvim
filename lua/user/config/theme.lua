@@ -1,5 +1,7 @@
 local M = {}
 
+M.catppuccin_theme = 'mocha'
+
 M.kanagawa = function()
   local kanagawa = require "kanagawa"
   kanagawa.setup {
@@ -93,40 +95,76 @@ M.colors = {
       change = "#DCA561",
     },
   },
-  catppuccin_colors = {
-    rosewater = "#F5E0DC",
-    flamingo = "#F2CDCD",
-    violet = "#DDB6F2",
-    pink = "#F5C2E7",
-    red = "#F28FAD",
-    maroon = "#E8A2AF",
-    orange = "#F8BD96",
-    yellow = "#FAE3B0",
-    green = "#ABE9B3",
-    blue = "#96CDFB",
-    cyan = "#89DCEB",
-    teal = "#B5E8E0",
-    lavender = "#C9CBFF",
-    white = "#D9E0EE",
-    gray2 = "#C3BAC6",
-    gray1 = "#988BA2",
-    gray0 = "#6E6C7E",
-    black4 = "#575268",
-    bg_br = "#302D41",
-    bg = "#1A1826",
-    bg_alt = "#1E1E2E",
-    fg = "#D9E0EE",
-    black = "#1A1826",
-    git = {
-      add = "#ABE9B3",
-      change = "#96CDFB",
-      delete = "#F28FAD",
-      conflict = "#FAE3B0",
+  catppuccin = {
+    latte = {
+      rosewater = "#f2d5cf",
+      flamingo = "#eebebe",
+      pink = "#f4b8e4",
+      mauve = "#ca9ee6",
+      red = "#e78284",
+      maroon = "#ea999c",
+      peach = "#ef9f76",
+      yellow = "#e5c890",
+      green = "#a6d189",
+      teal = "#81c8be",
+      sky = "#99d1db",
+      sapphire = "#85c1dc",
+      blue = "#8caaee",
+      lavender = "#babbf1",
+      text = "#c6d0f5",
+      subtext1 = "#b5bfe2",
+      subtext0 = "#a5adce",
+      overlay2 = "#949cbb",
+      overlay1 = "#838ba7",
+      overlay0 = "#737994",
+      surface2 = "#626880",
+      surface1 = "#51576d",
+      surface0 = "#414559",
+      base = "#303446",
+      mantle = "#292c3c",
+      crust = "#232634",
+      git = {
+        add = "#ABE9B3",
+        change = "#96CDFB",
+        delete = "#F28FAD",
+        conflict = "#FAE3B0",
+      }
     },
-  },
+    mocha = {
+      rosewater = "#F5E0DC",
+      flamingo = "#F2CDCD",
+      violet = "#DDB6F2",
+      pink = "#F5C2E7",
+      red = "#F28FAD",
+      maroon = "#E8A2AF",
+      orange = "#F8BD96",
+      yellow = "#FAE3B0",
+      green = "#ABE9B3",
+      blue = "#96CDFB",
+      cyan = "#89DCEB",
+      teal = "#B5E8E0",
+      lavender = "#C9CBFF",
+      white = "#D9E0EE",
+      gray2 = "#C3BAC6",
+      gray1 = "#988BA2",
+      gray0 = "#6E6C7E",
+      black4 = "#575268",
+      bg_br = "#302D41",
+      bg = "#1A1826",
+      bg_alt = "#1E1E2E",
+      fg = "#D9E0EE",
+      black = "#1A1826",
+      git = {
+        add = "#ABE9B3",
+        change = "#96CDFB",
+        delete = "#F28FAD",
+        conflict = "#FAE3B0",
+      }
+    }
+  }
 }
 
-local colors = M.colors.catppuccin_colors
+local colors = M.colors.catppuccin[M.catppuccin_theme]
 
 M.mode_color = {
   n = colors.git.delete,

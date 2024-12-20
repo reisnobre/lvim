@@ -6,6 +6,7 @@ M.config = function ()
   -- Buffer Navigation
   lvim.keys.normal_mode["<S-l>"] = ":BufferLineCycleNext<CR>"
   lvim.keys.normal_mode["<S-h>"] = ":BufferLineCyclePrev<CR>"
+  lvim.keys.normal_mode["gr"] = "<cmd>Trouble lsp_references<cr>"
 
   -- Additional Leader bindings for WhichKey
   lvim.builtin.which_key.mappings.s = { ":update<cr>", "QuickSave" }
@@ -27,6 +28,7 @@ M.config = function ()
     t = { ":BufferLineGroupToggle front<CR>", "toggle front tabs" },
     T = { ":BufferLineGroupToggle back<CR>", "toggle back tabs" },
     D = { ":call delete(expand('%')) | bdelete!<CR>", "Delete current file" },
+    y = { ":let @+ = expand('%')<CR>", "Copy path to current file" },
   }
 
   -- Telescope keybindings
@@ -57,7 +59,7 @@ M.config = function ()
     name = "+Trouble",
     r = { "<cmd>Trouble lsp_references<cr>", "References" },
     f = { "<cmd>Trouble lsp_definitions<cr>", "Definitions" },
-    d = { "<cmd>Trouble lsp_document_diagnostics<cr>", "Diagnosticss" },
+    i = { "<cmd>Trouble lsp_implementations<cr>", "Implementations" },
     q = { "<cmd>Trouble quickfix<cr>", "QuickFix" },
     l = { "<cmd>Trouble loclist<cr>", "LocationList" },
     w = { "<cmd>Trouble lsp_workspace_diagnostics<cr>", "Diagnosticss" },
@@ -92,6 +94,13 @@ M.config = function ()
       n = { ":PhpactorClassNew<CR>", "Phpactor class new" }
     }
   }
+
+  lvim.builtin.which_key.mappings.z = {  "<cmd>ZenMode<cr>", "Zen Mode" }
+  --   name = "+Zen",
+  --   z = { "<cmd>ZenMode<cr>", "Zen Mode" },
+  --   f = { "<cmd>ZenMode<cr>", "Zen Mode" },
+  --   t = { "<cmd>Twilight<cr>", "Twilight" },
+  -- }
 end
 
 return M

@@ -1,6 +1,8 @@
 local M = {}
 local _time = os.date "*t"
-local colors = require("user.config.theme").colors.catppuccin_colors
+
+local theme = require("user.config.theme")
+local colors = theme.colors.catppuccin[theme.catppuccin_theme]
 local conditions = require("user.builtins.lualine.conditions")
 local components = require("user.builtins.lualine.components")
 local mode_color = require("user.config.theme").mode_color

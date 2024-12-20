@@ -26,9 +26,9 @@ M.config = function ()
 
   lvim.builtin.cmp.sources = {
     { name = "nvim_lsp", max_item_count = 10 },
-    { name = "copilot", max_item_count = 5 },
     { name = "buffer", max_item_count = 3, keyword_length = 5 },
     { name = "path", max_item_count = 3 },
+    { name = "copilot", max_item_count = 3 },
     { name = "luasnip", max_item_count = 5 },
     { name = "nvim_lua" },
     { name = "calc" },

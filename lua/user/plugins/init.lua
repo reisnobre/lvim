@@ -4,33 +4,41 @@ M.init = function ()
   local frontend_file_types = { "html", "css", "javascript", "vue", "scss" }
   local fugitive_commands = { "G", "Git", "Gdiffsplit", "Gread", "Gwrite", "Ggrep", "GMove", "GDelete", "GBrowse", "GRemove", "GRename", "Glgrep", "Gedit" }
 
+  lvim.colorscheme = "catppuccin"
   lvim.plugins = {
     --- DOCS: dependencies
     { "MunifTanjim/nui.nvim" },
     { "rcarriga/nvim-notify" },
     --- DOCS: Workflow
-    --  Git management, commit, push and more
-    { "tpope/vim-fugitive", cmd = fugitive_commands },
+    { "tpope/vim-fugitive", cmd = fugitive_commands },  --  Git management, commit, push and more
     { "tpope/vim-rhubarb" },
-    -- Function signatures
-    { "ray-x/lsp_signature.nvim",
+    { "ray-x/lsp_signature.nvim", -- Function signatures
       config = function()
         require("user.plugins._signature").config()
       end,
       event = "InsertEnter",
     },
-    -- Better diagnostics, references and more
-    {
-      "folke/trouble.nvim",
+    { "folke/trouble.nvim", -- Better diagnostics, references and more
       dependencies = { "nvim-tree/nvim-web-devicons" },
       config = function()
-        require("trouble").setup()
+        require("trouble").setup({
+          focus = true,
+          preview = {
+            type = "float",
+            relative = "win",
+            border = "rounded",
+            title = "Preview",
+            title_pos = "center",
+            position = { 0, -2 },
+            size = { width = 0.4, height = 0.3 },
+            zindex = 200,
+          },
+        })
       end,
       cmd = "Trouble",
       event = "VeryLazy",
     },
-    {
-      "folke/noice.nvim",
+    { "folke/noice.nvim",
       event = "VeryLazy",
       config = function()
         require("user.plugins._noice").config()
@@ -41,63 +49,55 @@ M.init = function ()
       }
     },
     -- Better quickfix preview and list
-    {
-      "kevinhwang91/nvim-bqf",
+    { "kevinhwang91/nvim-bqf",
       config = function()
         require("user.plugins._bqf").config()
       end,
       event = "VeryLazy",
     },
     -- Find and replace across the whole project
-    {
-      "windwp/nvim-spectre",
+    { "windwp/nvim-spectre",
       event = "VeryLazy",
       config = function()
         require("user.plugins._spectre").config()
       end,
     },
     -- Motion provider
-    {
-      "folke/flash.nvim",
+    { "folke/flash.nvim",
       event = "VeryLazy",
       config = function()
         require("user.plugins._flash").config()
       end,
       keys = {
-        {
-          "s",
+        { "s",
           mode = { "n", "x", "o" },
           function()
             require("flash").jump()
           end,
           desc = "Flash",
         },
-        {
-          "S",
+        { "S",
           mode = { "n", "o", "x" },
           function()
             require("flash").treesitter()
           end,
           desc = "Flash Treesitter",
         },
-        {
-          "r",
+        { "r",
           mode = "o",
           function()
             require("flash").remote()
           end,
           desc = "Remote Flash",
         },
-        {
-          "R",
+        { "R",
           mode = { "o", "x" },
           function()
             require("flash").treesitter_search()
           end,
           desc = "Flash Treesitter Search",
         },
-        {
-          "<c-s>",
+        { "<c-s>",
           mode = { "c" },
           function()
             require("flash").toggle()
@@ -106,49 +106,39 @@ M.init = function ()
         }
       }
     },
-    {
-      "folke/todo-comments.nvim",
-      dependencies = { "nvim-lua/plenary.nvim" },
-      config = function()
-        require("user.plugins._todo_comments").config()
-      end,
-      event = "VeryLazy",
-    },
     --- DOCS: Language
     { "mattn/emmet-vim", ft = frontend_file_types },
     { "aca/emmet-ls", ft = frontend_file_types },
     --- DOCS: UI
-
-    --- DOCS: Utility
-    -- Display hex colors preview
-    { "norcalli/nvim-colorizer.lua", event = "VeryLazy" },
-    -- Repeat last command by pressing . (dot)
-    { "tpope/vim-repeat", event = "VeryLazy" },
-    -- Change surround brackets, quotes and more
-    { "tpope/vim-surround", keys = { "c","d","y" }, event = "VeryLazy" },
-    -- Syntax highlight for Coffescript
-    { "kchmck/vim-coffee-script", event = "BufRead" },
-    -- Show indentation guides
-    { "lukas-reineke/indent-blankline.nvim",
-      config = function()
-        require("user.plugins._indent").config()
-      end,
-      event = "BufRead",
-    },
-    --- Others
-    {
-      "catppuccin/nvim",
+    { "catppuccin/nvim", -- Theme
       name = "catppuccin",
       init = function()
-        vim.g.catppuccin_flavour = "mocha"
+        vim.g.catppuccin_flavour = require("user.config.theme").catppuccin_theme
       end,
       config = function()
         require("user.config.theme").catppuccin()
         vim.cmd [[colorscheme catppuccin]]
       end
     },
-    {
-      "zbirenbaum/copilot.lua",
+    --- DOCS: Utility
+    { "norcalli/nvim-colorizer.lua", event = "VeryLazy" }, --  Display hex colors preview
+    { "tpope/vim-repeat", event = "VeryLazy" }, -- Repeat last command by pressing . (dot)
+    { "tpope/vim-surround", keys = { "c","d","y" }, event = "VeryLazy" }, -- Change surround brackets, quotes and more
+    { "kchmck/vim-coffee-script", event = "BufRead" }, -- Syntax highlight for Coffescript
+    { "folke/todo-comments.nvim", -- Highlight TODO, FIXME, etc
+      dependencies = { "nvim-lua/plenary.nvim" },
+      config = function()
+        require("user.plugins._todo_comments").config()
+      end,
+      event = "VeryLazy",
+    },
+    { "lukas-reineke/indent-blankline.nvim", -- Show indentation guides
+      config = function()
+        require("user.plugins._indent").config()
+      end,
+      event = "BufRead",
+    },
+    { "zbirenbaum/copilot.lua",
       cmd = "Copilot",
       event = "BufRead",
       config = function()
@@ -158,8 +148,7 @@ M.init = function ()
         })
       end
     },
-    {
-      "zbirenbaum/copilot-cmp",
+    { "zbirenbaum/copilot-cmp",
       dependencies = { "zbirenbaum/copilot.lua" },
       event = "BufRead",
       config = function ()

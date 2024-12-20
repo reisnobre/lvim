@@ -23,6 +23,35 @@ M.config = function ()
     M.default_diagnostic_config.virtual_text = false
   end
   vim.diagnostic.config(M.default_diagnostic_config)
+
+  -- add `cucumber_language_server` to `skipped_servers` list
+  vim.list_extend(lvim.lsp.automatic_configuration.skipped_servers, { "cucumber_language_server" })
+
+  -- local opts = {
+  --   filetypes = {"cucumber", "javascript", "javascriptreact" },
+  --   settings = {
+  --     cucumber = {
+  --       features = {
+  --         "cypress/**/*.feature",
+  --         "**/*.feature"
+  --       },
+  --       glue = {
+  --         "cypress/**/*.js"
+  --       }
+  --     }
+  --   }
+  -- }
+
+  -- require("lvim.lsp.manager").setup("cucumber_language_server", opts)
+
+-- -- lsp_manager.setup("cucumber_language_server", {
+-- --   capabilities = require("lvim.lsp").common_capabilities(),
+-- --   on_attach = require("lvim.lsp").common_on_attach
+-- -- })
+  -- remove `jedi_language_server` from `skipped_servers` list
+  -- lvim.lsp.automatic_configuration.skipped_servers = vim.tbl_filter(function(server)
+  --   return server ~= "jedi_language_server"
+  -- end, lvim.lsp.automatic_configuration.skipped_servers)
 end
 
 return M
