@@ -8,18 +8,35 @@ M.init = function ()
   lvim.plugins = {
     --- DOCS: dependencies
     { "MunifTanjim/nui.nvim" },
-    { "rcarriga/nvim-notify" },
+    { "rcarriga/nvim-notify",
+      config = function ()
+        require("notify").setup({
+          render = "compact",
+          timeout = 1000, -- Duration in milliseconds
+          fps = 60, -- Animation frame rate
+          icons = {
+            ERROR = "",
+            WARN = "",
+            INFO = "",
+            DEBUG = "",
+            TRACE = "✎",
+          },
+        })
+      end
+    },
     --- DOCS: Workflow
     { "tpope/vim-fugitive", cmd = fugitive_commands },  --  Git management, commit, push and more
     { "tpope/vim-rhubarb" },
     { "ray-x/lsp_signature.nvim", -- Function signatures
+      event = "InsertEnter",
       config = function()
         require("user.plugins._signature").config()
-      end,
-      event = "InsertEnter",
+      end
     },
     { "folke/trouble.nvim", -- Better diagnostics, references and more
       dependencies = { "nvim-tree/nvim-web-devicons" },
+      cmd = "Trouble",
+      event = "VeryLazy",
       config = function()
         require("trouble").setup({
           focus = true,
@@ -34,19 +51,17 @@ M.init = function ()
             zindex = 200,
           },
         })
-      end,
-      cmd = "Trouble",
-      event = "VeryLazy",
+      end
     },
     { "folke/noice.nvim",
       event = "VeryLazy",
-      config = function()
-        require("user.plugins._noice").config()
-      end,
       dependencies = {
         "MunifTanjim/nui.nvim", -- if you lazy-load any plugin below, make sure to add proper `module="..."` entries
         "rcarriga/nvim-notify", -- `nvim-notify` is only needed, if you want to use the notification view.
-      }
+      },
+      config = function()
+        require("user.plugins._noice").config()
+      end
     },
     -- Better quickfix preview and list
     { "kevinhwang91/nvim-bqf",
