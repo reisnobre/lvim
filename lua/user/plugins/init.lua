@@ -142,16 +142,16 @@ M.init = function ()
     { "kchmck/vim-coffee-script", event = "BufRead" }, -- Syntax highlight for Coffescript
     { "folke/todo-comments.nvim", -- Highlight TODO, FIXME, etc
       dependencies = { "nvim-lua/plenary.nvim" },
+      event = "VeryLazy",
       config = function()
         require("user.plugins._todo_comments").config()
       end,
-      event = "VeryLazy",
     },
     { "lukas-reineke/indent-blankline.nvim", -- Show indentation guides
+      event = "BufRead",
       config = function()
         require("user.plugins._indent").config()
       end,
-      event = "BufRead",
     },
     { "zbirenbaum/copilot.lua",
       cmd = "Copilot",
