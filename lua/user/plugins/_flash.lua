@@ -112,7 +112,7 @@ M.config = function()
       -- Highlight the search matches
       matches = true,
       -- extmark priority
-      priority = 5000,
+      priority = 500,
       groups = {
         match = "FlashMatch",
         current = "FlashCurrent",

@@ -11,9 +11,11 @@ M.init = function ()
     { "rcarriga/nvim-notify",
       config = function ()
         require("notify").setup({
+          background_colour = "#000000",
           render = "compact",
           timeout = 1000, -- Duration in milliseconds
           fps = 60, -- Animation frame rate
+          priority = 1000, -- Priority of the notification
           icons = {
             ERROR = "",
             WARN = "",
@@ -168,6 +170,22 @@ M.init = function ()
       event = "BufRead",
       config = function ()
         require("copilot_cmp").setup()
+      end
+    },
+    {
+      "pocco81/true-zen.nvim",
+    },
+    {
+      "nvim-neorg/neorg",
+      build = ":Neorg sync-parsers",
+      ft = { "norg" },
+      dependencies = { 
+        "nvim-lua/plenary.nvim",
+      },
+      lazy = false,
+      version = "*",
+      config = function()
+        require("user.plugins._neorg").config()
       end
     }
   }

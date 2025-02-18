@@ -95,12 +95,29 @@ M.config = function ()
     }
   }
 
-  lvim.builtin.which_key.mappings.z = {  "<cmd>ZenMode<cr>", "Zen Mode" }
-  --   name = "+Zen",
-  --   z = { "<cmd>ZenMode<cr>", "Zen Mode" },
-  --   f = { "<cmd>ZenMode<cr>", "Zen Mode" },
-  --   t = { "<cmd>Twilight<cr>", "Twilight" },
-  -- }
+  lvim.builtin.which_key.mappings["o"] = {
+    name = "+Neorg",
+    n = { "<Plug>(neorg.dirman.new-note)", "New note" },
+    h = { "<Plug>(neorg.esupports.hop.hop-link)", "Jump to Link"  },
+    H = { "<Plug>(neorg.esupports.hop.hop-link.vsplit)", "Open link vsplit" },
+    t = { ":Neorg toggle-concealer<CR>", "Toggle concealer" },
+    r = { ":Neorg return<CR>", "Return" },
+    w = { ":Neorg workspace ", "Workspaces" },
+    m = { ":Neorg inject-metadata<CR>", "Inject metadata" },
+    M = { ":Neorg update-metadata<CR>", "Update metadata" },
+    S = { ":Neorg generate-workspace-summary<CR>", "Insert summary" },
+    j = {
+      name = "+Journal",
+      t = { ":Neorg journal today<CR>", "Today" },
+      y = { ":Neorg journal yesterday<CR>", "Yesterday" },
+      c = { ":Neorg journal custom<CR>", "Custom" },
+    },
+    d = {
+      name = "+Docs",
+      d = { ":help neorg<CR>", "Docs" },
+      c = { ":help neorg-cheatsheet<CR>", "Cheatsheet" },
+    },
+  }
 end
 
 return M

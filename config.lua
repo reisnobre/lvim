@@ -2,7 +2,7 @@
 lvim.leader = "space"
 lvim.lint_on_save = true
 lvim.format_on_save = false
-lvim.transparent_window = false
+lvim.transparent_window = true
 lvim.debug = true
 
 -- Vim config options

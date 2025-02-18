@@ -35,6 +35,7 @@ M.config = function ()
     { name = "emoji" },
     { name = "treesitter" },
     { name = "crates" },
+    { name = "neorg" },
   }
 end
 
