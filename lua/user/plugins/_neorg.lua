@@ -25,12 +25,7 @@ M.config = function ()
           workspaces = workspaces,
           default_workspace = "notes"
         },
-      },
-      ["core.presenter"] = {
-        config = {
-          zen_mode = "truezen",
-        }
-      },
+      }
     },
   }
 end

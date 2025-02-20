@@ -7,7 +7,6 @@ M.init = function ()
   lvim.colorscheme = "catppuccin"
   lvim.plugins = {
     --- DOCS: dependencies
-    { "MunifTanjim/nui.nvim" },
     { "rcarriga/nvim-notify",
       config = function ()
         require("notify").setup({
@@ -24,6 +23,17 @@ M.init = function ()
             TRACE = "✎",
           },
         })
+      end
+    },
+    --- DOCS: UI
+    { "catppuccin/nvim", -- Theme
+      name = "catppuccin",
+      init = function()
+        vim.g.catppuccin_flavour = require("user.config.theme").catppuccin_theme
+      end,
+      config = function()
+        require("user.config.theme").catppuccin()
+        vim.cmd [[colorscheme catppuccin]]
       end
     },
     --- DOCS: Workflow
@@ -85,58 +95,11 @@ M.init = function ()
       config = function()
         require("user.plugins._flash").config()
       end,
-      keys = {
-        { "s",
-          mode = { "n", "x", "o" },
-          function()
-            require("flash").jump()
-          end,
-          desc = "Flash",
-        },
-        { "S",
-          mode = { "n", "o", "x" },
-          function()
-            require("flash").treesitter()
-          end,
-          desc = "Flash Treesitter",
-        },
-        { "r",
-          mode = "o",
-          function()
-            require("flash").remote()
-          end,
-          desc = "Remote Flash",
-        },
-        { "R",
-          mode = { "o", "x" },
-          function()
-            require("flash").treesitter_search()
-          end,
-          desc = "Flash Treesitter Search",
-        },
-        { "<c-s>",
-          mode = { "c" },
-          function()
-            require("flash").toggle()
-          end,
-          desc = "Toggle Flash Search",
-        }
-      }
+      keys = require("user.plugins._flash").keys
     },
     --- DOCS: Language
     { "mattn/emmet-vim", ft = frontend_file_types },
     { "aca/emmet-ls", ft = frontend_file_types },
-    --- DOCS: UI
-    { "catppuccin/nvim", -- Theme
-      name = "catppuccin",
-      init = function()
-        vim.g.catppuccin_flavour = require("user.config.theme").catppuccin_theme
-      end,
-      config = function()
-        require("user.config.theme").catppuccin()
-        vim.cmd [[colorscheme catppuccin]]
-      end
-    },
     --- DOCS: Utility
     { "norcalli/nvim-colorizer.lua", event = "VeryLazy" }, --  Display hex colors preview
     { "tpope/vim-repeat", event = "VeryLazy" }, -- Repeat last command by pressing . (dot)
@@ -149,13 +112,13 @@ M.init = function ()
         require("user.plugins._todo_comments").config()
       end,
     },
-    { "lukas-reineke/indent-blankline.nvim", -- Show indentation guides
-      event = "BufRead",
-      config = function()
-        require("user.plugins._indent").config()
-      end,
-    },
-    { "zbirenbaum/copilot.lua",
+    -- { "lukas-reineke/indent-blankline.nvim", -- Show indentation guides
+    --   event = "BufRead",
+    --   config = function()
+    --     require("user.plugins._indent").config()
+    --   end,
+    -- },
+    { "zbirenbaum/copilot.lua", -- AI code completion
       cmd = "Copilot",
       event = "BufRead",
       config = function()
@@ -165,23 +128,17 @@ M.init = function ()
         })
       end
     },
-    { "zbirenbaum/copilot-cmp",
+    { "zbirenbaum/copilot-cmp", -- Copilot completion
       dependencies = { "zbirenbaum/copilot.lua" },
       event = "BufRead",
       config = function ()
         require("copilot_cmp").setup()
       end
     },
-    {
-      "pocco81/true-zen.nvim",
-    },
-    {
-      "nvim-neorg/neorg",
+    { "nvim-neorg/neorg", -- Neorg
       build = ":Neorg sync-parsers",
       ft = { "norg" },
-      dependencies = { 
-        "nvim-lua/plenary.nvim",
-      },
+      dependencies = { "nvim-lua/plenary.nvim" },
       lazy = false,
       version = "*",
       config = function()

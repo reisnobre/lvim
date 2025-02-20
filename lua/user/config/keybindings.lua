@@ -102,6 +102,7 @@ M.config = function ()
     H = { "<Plug>(neorg.esupports.hop.hop-link.vsplit)", "Open link vsplit" },
     t = { ":Neorg toggle-concealer<CR>", "Toggle concealer" },
     r = { ":Neorg return<CR>", "Return" },
+    i = { ":Neorg index<CR>", "Index" },
     w = { ":Neorg workspace ", "Workspaces" },
     m = { ":Neorg inject-metadata<CR>", "Inject metadata" },
     M = { ":Neorg update-metadata<CR>", "Update metadata" },
