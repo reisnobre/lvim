@@ -7,7 +7,7 @@ M.init = function ()
   lvim.colorscheme = "catppuccin"
   lvim.plugins = {
     --- DOCS: dependencies
-    { "rcarriga/nvim-notify",
+    { "rcarriga/nvim-notify", -- not needed
       config = function ()
         require("notify").setup({
           background_colour = "#000000",
@@ -26,7 +26,7 @@ M.init = function ()
       end
     },
     --- DOCS: UI
-    { "catppuccin/nvim", -- Theme
+    { "catppuccin/nvim", -- Theme -- installed
       name = "catppuccin",
       init = function()
         vim.g.catppuccin_flavour = require("user.config.theme").catppuccin_theme
@@ -39,13 +39,13 @@ M.init = function ()
     --- DOCS: Workflow
     { "tpope/vim-fugitive", cmd = fugitive_commands },  --  Git management, commit, push and more
     { "tpope/vim-rhubarb" },
-    { "ray-x/lsp_signature.nvim", -- Function signatures
+    { "ray-x/lsp_signature.nvim", -- Function signatures -- installed
       event = "InsertEnter",
       config = function()
         require("user.plugins._signature").config()
       end
     },
-    { "folke/trouble.nvim", -- Better diagnostics, references and more
+    { "folke/trouble.nvim", -- Better diagnostics, references and more -- installed
       dependencies = { "nvim-tree/nvim-web-devicons" },
       cmd = "Trouble",
       event = "VeryLazy",
@@ -65,7 +65,7 @@ M.init = function ()
         })
       end
     },
-    { "folke/noice.nvim",
+    { "folke/noice.nvim", -- installed
       event = "VeryLazy",
       dependencies = {
         "MunifTanjim/nui.nvim", -- if you lazy-load any plugin below, make sure to add proper `module="..."` entries
@@ -112,12 +112,6 @@ M.init = function ()
         require("user.plugins._todo_comments").config()
       end,
     },
-    -- { "lukas-reineke/indent-blankline.nvim", -- Show indentation guides
-    --   event = "BufRead",
-    --   config = function()
-    --     require("user.plugins._indent").config()
-    --   end,
-    -- },
     { "zbirenbaum/copilot.lua", -- AI code completion
       cmd = "Copilot",
       event = "BufRead",
@@ -136,7 +130,7 @@ M.init = function ()
       end
     },
     { "nvim-neorg/neorg", -- Neorg
-      build = ":Neorg sync-parsers",
+      -- build = ":Neorg sync-parsers",
       ft = { "norg" },
       dependencies = { "nvim-lua/plenary.nvim" },
       lazy = false,

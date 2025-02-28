@@ -4,6 +4,7 @@ M.config = function ()
   lvim.keys.insert_mode["jj"] = "<Esc>"
 
   -- Buffer Navigation
+  lvim.keys.normal_mode["<leader><leader>"] = "<cmd>Telescope find_files<cr>"
   lvim.keys.normal_mode["<S-l>"] = ":BufferLineCycleNext<CR>"
   lvim.keys.normal_mode["<S-h>"] = ":BufferLineCyclePrev<CR>"
   lvim.keys.normal_mode["gr"] = "<cmd>Trouble lsp_references<cr>"
