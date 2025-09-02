@@ -1,1 +1,23 @@
 require("lvim.lsp.manager").setup("vuels")
+-- local project_root = vim.fn.getcwd()
+-- local disabled_projects = {
+--     "/Users/reisnobre/Labs/app-cash" -- Change this to your project path
+-- }
+-- local lspconfig = require("lspconfig")
+--
+-- if vim.tbl_contains(disabled_projects, project_root) then
+--   lspconfig.vuels.setup({ autostart = false }) -- Disable Vetur
+--   lspconfig.volar.setup({
+--     filetypes = { 'vue' }, -- Enable JS/TS files
+--   })
+--   -- lspconfig.volar.setup({
+--   --   filetypes = { 'vue' }, -- Ensure it only attaches to Vue files
+--   --   init_options = {
+--   --     typescript = {
+--   --       tsdk = vim.fn.expand("$HOME/.npm/lib/node_modules/typescript/lib"), -- Adjust path if needed
+--   --     }
+--   --   }
+--   -- })
+-- else
+--   lspconfig.vuels.setup({ autostart = true }) -- Disable Vetur
+-- end

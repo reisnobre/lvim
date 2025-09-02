@@ -125,7 +125,6 @@ M.init = function()
 		--- DOCS: Utility
 		{ "norcalli/nvim-colorizer.lua", event = "VeryLazy" }, --  Display hex colors preview
 		{ "tpope/vim-repeat", event = "VeryLazy" }, -- Repeat last command by pressing . (dot)
-		{ "tpope/vim-surround", keys = { "c", "d", "y" }, event = "VeryLazy" }, -- Change surround brackets, quotes and more
 		{ "kchmck/vim-coffee-script", event = "BufRead" }, -- Syntax highlight for Coffescript
 		{
 			"folke/todo-comments.nvim", -- Highlight TODO, FIXME, etc
@@ -135,36 +134,52 @@ M.init = function()
 				require("user.plugins._todo_comments").config()
 			end,
 		},
-		{
-			"zbirenbaum/copilot.lua", -- AI code completion
-			cmd = "Copilot",
+		-- {
+		-- 	"zbirenbaum/copilot.lua", -- AI code completion
+		-- 	cmd = "Copilot",
+		-- 	event = "BufRead",
+		-- 	config = function()
+		-- 		require("copilot").setup({
+		-- 			suggestion = { enabled = false },
+		-- 			panel = { enabled = false },
+		-- 		})
+		-- 	end,
+		-- },
+    {
+      "github/copilot.vim",
 			event = "BufRead",
 			config = function()
-				require("copilot").setup({
-					suggestion = { enabled = false },
-					panel = { enabled = false },
-				})
-			end,
-		},
-		{
-			"zbirenbaum/copilot-cmp", -- Copilot completion
-			dependencies = { "zbirenbaum/copilot.lua" },
-			event = "BufRead",
-			config = function()
-				require("copilot_cmp").setup()
-			end,
-		},
-		{
-			"nvim-neorg/neorg", -- Neorg
-			-- build = ":Neorg sync-parsers",
-			ft = { "norg" },
-			dependencies = { "nvim-lua/plenary.nvim" },
-			lazy = false,
-			version = "*",
-			config = function()
-				require("user.plugins._neorg").config()
-			end,
-		},
+			end
+    },
+		-- {
+		-- 	"zbirenbaum/copilot-cmp", -- Copilot completion
+		-- 	dependencies = { "zbirenbaum/copilot.lua" },
+		-- 	event = "BufRead",
+		-- 	config = function()
+		-- 		require("copilot_cmp").setup()
+		-- 	end,
+		-- },
+    {
+      "luckasRanarison/tailwind-tools.nvim",
+      name = "tailwind-tools",
+      build = ":UpdateRemotePlugins",
+      dependencies = {
+        "nvim-treesitter/nvim-treesitter",
+        "nvim-telescope/telescope.nvim", -- optional
+        "neovim/nvim-lspconfig", -- optional
+      },
+      opts = {} -- your configuration
+    },
+    { 'echasnovski/mini.comment',
+      version = false,
+      opts = { -- these are the default options
+        options = {
+          custom_commentstring = function()
+            return require("ts_context_commentstring.internal").calculate_commentstring() or vim.bo.commentstring
+          end,
+        },
+      }
+    }
 	}
 end
 

@@ -1,6 +1,7 @@
 local M = {}
 
 M.config = function()
+  vim.opt.runtimepath:append(vim.fn.getcwd() .. "/.nvim")
   vim.g.maplocalleader = ";"
   vim.g.dashboard_disable_statusline = 1
   vim.g.dashboard_enable_session = 0

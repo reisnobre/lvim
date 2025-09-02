@@ -28,8 +28,8 @@ M.init = function()
   -- Cmp customization
   require("user.builtins.cmp").config()
 
-  -- Null ls customization
-  require("user.builtins.null-ls").config()
+  -- -- Null ls customization
+  -- require("user.builtins.null-ls").config()
 
   -- Lualine
   require("user.builtins.lualine").config()

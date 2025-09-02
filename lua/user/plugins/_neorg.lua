@@ -6,6 +6,7 @@ M.config = function ()
     notes = "/Users/reisnobre/Notes",
     money = "/Users/reisnobre/Notes/money",
     trm = "/Users/reisnobre/Notes/trm",
+    yoruba = "/Users/reisnobre/Notes/yoruba",
     obsidian = "/Users/reisnobre/Obsidian",
   }
 

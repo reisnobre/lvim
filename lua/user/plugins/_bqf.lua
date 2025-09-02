@@ -27,8 +27,8 @@ M.config = function()
       prevfile = "gk",
       nextfile = "gj",
 
-      prevhist = "<S-Tab>",
-      nexthist = "<Tab>",
+      -- prevhist = "<S-Tab>",
+      -- nexthist = "<Tab>",
     },
     preview = {
       auto_preview = true,

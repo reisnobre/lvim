@@ -1,0 +1,6 @@
+{
+    "volar.takeOverMode.extension": "Vue.volar",
+    "vue-semantic-server.trace.server": "off",
+    "vue.autoInsert.bracketSpacing": true,
+    "vue.autoInsert.dotValue": true
+}

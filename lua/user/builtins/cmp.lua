@@ -3,6 +3,13 @@ local M = {}
 M.config = function ()
   local kind = require "user.utils.lsp_kind"
   lvim.builtin.cmp.formatting.kind_icons = kind.cmp_kind
+
+  lvim.builtin.cmp.mapping = {
+    ["<C-j>"] = require("cmp").mapping.select_next_item(),
+    ["<C-k>"] = require("cmp").mapping.select_prev_item(),
+    ["<CR>"]  = require("cmp").mapping.confirm({ select = true }),
+  }
+
   lvim.builtin.cmp.formatting.source_names = {
     copilot = "(Copilot)",
     buffer = "(Buffer)",
