@@ -7,16 +7,16 @@ M.init = function()
   lvim.builtin.nvimtree.active = true
   lvim.builtin.lir.active = false
 
-  -- Telescope
+  -- -- Telescope
   require("user.builtins.telescope").config()
-
-   -- NvimTree
+  --
+  --  -- NvimTree
   require("user.builtins.nvimtree").config()
-
-  -- Treesitter
+  --
+  -- -- Treesitter
   require("user.builtins.treesitter").config()
-
-  -- LSP
+  --
+  -- -- LSP
   require("user.builtins.lsp").config()
 
   -- Bufferline
@@ -28,7 +28,7 @@ M.init = function()
   -- Cmp customization
   require("user.builtins.cmp").config()
 
-  -- -- Null ls customization
+  -- Null ls customization
   -- require("user.builtins.null-ls").config()
 
   -- Lualine

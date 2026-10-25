@@ -55,6 +55,7 @@ M.init = function()
 		--- DOCS: Workflow
 		{ "tpope/vim-fugitive", cmd = fugitive_commands }, --  Git management, commit, push and more
 		{ "tpope/vim-rhubarb" },
+    -- not necessary but it might be useful depending on the existing implementation 
 		{
 			"ray-x/lsp_signature.nvim", -- Function signatures -- installed
 			event = "InsertEnter",
@@ -62,6 +63,7 @@ M.init = function()
 				require("user.plugins._signature").config()
 			end,
 		},
+    -- already installed with lazyvim
 		{
 			"folke/trouble.nvim", -- Better diagnostics, references and more -- installed
 			dependencies = { "nvim-tree/nvim-web-devicons" },
@@ -83,6 +85,7 @@ M.init = function()
 				})
 			end,
 		},
+    -- already installed with lazyvim
 		{
 			"folke/noice.nvim", -- installed
 			event = "VeryLazy",
@@ -103,6 +106,7 @@ M.init = function()
 			event = "VeryLazy",
 		},
 		-- Find and replace across the whole project
+    -- lazyvim has a builting that does the same thing
 		{
 			"windwp/nvim-spectre",
 			event = "VeryLazy",
@@ -111,6 +115,7 @@ M.init = function()
 			end,
 		},
 		-- Motion provider
+    -- already installed with lazyvim
 		{
 			"folke/flash.nvim",
 			event = "VeryLazy",
@@ -124,8 +129,10 @@ M.init = function()
 		{ "aca/emmet-ls", ft = frontend_file_types },
 		--- DOCS: Utility
 		{ "norcalli/nvim-colorizer.lua", event = "VeryLazy" }, --  Display hex colors preview
+    -- already installed with lazyvim
 		{ "tpope/vim-repeat", event = "VeryLazy" }, -- Repeat last command by pressing . (dot)
 		{ "kchmck/vim-coffee-script", event = "BufRead" }, -- Syntax highlight for Coffescript
+    -- already installed with lazyvim
 		{
 			"folke/todo-comments.nvim", -- Highlight TODO, FIXME, etc
 			dependencies = { "nvim-lua/plenary.nvim" },
@@ -134,31 +141,18 @@ M.init = function()
 				require("user.plugins._todo_comments").config()
 			end,
 		},
-		-- {
-		-- 	"zbirenbaum/copilot.lua", -- AI code completion
-		-- 	cmd = "Copilot",
-		-- 	event = "BufRead",
-		-- 	config = function()
-		-- 		require("copilot").setup({
-		-- 			suggestion = { enabled = false },
-		-- 			panel = { enabled = false },
-		-- 		})
-		-- 	end,
-		-- },
+    -- already installed with lazyvim
     {
       "github/copilot.vim",
-			event = "BufRead",
-			config = function()
-			end
+      event = "BufRead",
+      opts = { -- these are the default options
+        lsp = {
+          name = 'custom'
+        }
+      },
+      config = function()
+      end
     },
-		-- {
-		-- 	"zbirenbaum/copilot-cmp", -- Copilot completion
-		-- 	dependencies = { "zbirenbaum/copilot.lua" },
-		-- 	event = "BufRead",
-		-- 	config = function()
-		-- 		require("copilot_cmp").setup()
-		-- 	end,
-		-- },
     {
       "luckasRanarison/tailwind-tools.nvim",
       name = "tailwind-tools",
@@ -170,6 +164,7 @@ M.init = function()
       },
       opts = {} -- your configuration
     },
+    -- already installed with lazyvim
     { 'echasnovski/mini.comment',
       version = false,
       opts = { -- these are the default options

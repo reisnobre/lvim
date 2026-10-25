@@ -1,37 +1,15 @@
 local M = {}
 
-M.config = function ()
-  -- Prettier configuration
-  local formatters = require "lvim.lsp.null-ls.formatters"
-  formatters.setup {
-    {
-      exe = "prettier_d_slim",
-      filetypes = {
-        "javascriptreact",
-        "javascript",
-        "typescriptreact",
-        "typescript",
-        "json",
-        "markdown",
-        "vue"
-      },
-    },
-  }
+local null_ls = require("null-ls")
 
-  -- ESLint
-  local linters = require "lvim.lsp.null-ls.linters"
-  linters.setup {
-    {
-      exe = "eslint_d",
-      filetypes = {
-        "javascriptreact",
-        "javascript",
-        "typescriptreact",
-        "typescript",
-        "vue",
-      },
-    }
-  }
+local null_ls = require("null-ls")
+
+M.config = function ()
+  -- null_ls.setup({
+  --   sources = {
+  --     null_ls.builtins.formatting.prettierd
+  --   },
+  -- })
 end
 
 return M

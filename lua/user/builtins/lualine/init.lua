@@ -85,6 +85,7 @@ M.config = function()
   ins_left(components.mode)
 
   -- Git info
+  ins_left(components.project)
   ins_left(components.git)
 
   -- Window number

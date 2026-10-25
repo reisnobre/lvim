@@ -1,4 +1,8 @@
 require("lvim.lsp.manager").setup("vuels")
+-- local lspconfig = vim.lsp.config
+
+-- lspconfig.vuels.setup {}  -- Vue (old vue-ls)
+-- OR
 -- local project_root = vim.fn.getcwd()
 -- local disabled_projects = {
 --     "/Users/reisnobre/Labs/app-cash" -- Change this to your project path
